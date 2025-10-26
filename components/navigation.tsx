@@ -39,60 +39,65 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
+      <nav className="sticky top-0 z-50 bg-background/98 backdrop-blur-md border-b border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 sm:h-20">
+          <div className="flex justify-between items-center h-20 sm:h-24">
             <Link 
               href="/" 
-              className="text-xl sm:text-2xl font-bold text-foreground transition-colors"
+              className="text-xl sm:text-2xl font-semibold tracking-tight text-foreground transition-all hover:opacity-70"
               onClick={() => setIsOpen(false)}
             >
-              Milkroad Pro Archive
+              <span className="inline-block">
+                <span className="font-light">Milkroad</span>
+                <span className="font-normal ml-1">Pro</span>
+                <span className="font-light ml-1">Archive</span>
+              </span>
             </Link>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex gap-8">
+            <div className="hidden md:flex gap-10">
               {links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm font-medium transition-colors ${
+                  className={`relative text-sm font-normal transition-all tracking-wide ${
                     isActive(link.href)
-                      ? "text-foreground border-b-2 border-foreground pb-1"
+                      ? "text-foreground"
                       : "text-secondary hover:text-foreground"
                   }`}
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  {isActive(link.href) && (
+                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-foreground" />
+                  )}
                 </Link>
               ))}
             </div>
 
             {/* Mobile Menu Button - Positioned in header */}
             <button 
-              className="md:hidden w-10 h-10 rounded-lg flex items-center justify-center hover:bg-muted transition-colors"
+              className="md:hidden w-10 h-10 flex items-center justify-center hover:opacity-60 transition-opacity"
               onClick={() => setIsOpen(!isOpen)} 
               aria-label="Toggle menu"
               aria-expanded={isOpen}
             >
               <svg
-                className="w-6 h-6"
+                className="w-7 h-7 stroke-foreground"
                 fill="none"
-                stroke="currentColor"
+                strokeWidth={1.5}
                 viewBox="0 0 24 24"
               >
                 {isOpen ? (
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
                     d="M6 18L18 6M6 6l12 12"
                   />
                 ) : (
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                   />
                 )}
               </svg>
@@ -111,37 +116,38 @@ export default function Navigation() {
 
       {/* Mobile Menu Panel */}
       <div 
-        className={`fixed top-0 right-0 w-80 max-w-[90vw] h-full bg-card border-l border-border z-40 shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 right-0 w-80 max-w-[90vw] h-full bg-background z-40 transform transition-transform duration-300 ease-out md:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full">
-          <div className="p-6 border-b border-border bg-background">
-            <h2 className="text-xl font-bold text-foreground">Navigation</h2>
+        <div className="flex flex-col h-full border-l border-border">
+          <div className="p-8 border-b border-border">
+            <h2 className="text-lg font-light tracking-wide text-foreground">Menu</h2>
           </div>
           
-          <nav className="flex-1 overflow-y-auto p-6">
-            <div className="space-y-3">
+          <nav className="flex-1 overflow-y-auto px-6 py-8">
+            <div className="space-y-2">
               {links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`block py-4 px-4 rounded-lg text-base font-medium transition-all ${
+                  className={`block py-3 text-base font-normal transition-all tracking-wide ${
                     isActive(link.href) 
-                      ? "text-foreground bg-highlight border-l-4 border-foreground" 
-                      : "text-foreground hover:bg-muted"
+                      ? "text-foreground" 
+                      : "text-secondary hover:text-foreground"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
-                  {link.label}
+                  {isActive(link.href) && <span className="inline-block w-1 h-1 bg-foreground rounded-full mr-2" />}
+                  <span>{link.label}</span>
                 </Link>
               ))}
             </div>
           </nav>
 
-          <div className="p-6 border-t border-border bg-background">
-            <p className="text-sm text-secondary/70 text-center">
-              © 2024 Milkroad Pro Archive
+          <div className="p-8 border-t border-border">
+            <p className="text-xs text-secondary/60 text-center tracking-wider">
+              © 2024
             </p>
           </div>
         </div>
