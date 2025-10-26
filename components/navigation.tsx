@@ -21,7 +21,7 @@ export default function Navigation() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-border">
+    <nav className="sticky top-0 z-50 bg-background border-b border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
           <Link href="/" className="text-xl sm:text-2xl font-bold text-foreground hover:text-foreground">
