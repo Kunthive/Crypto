@@ -238,5 +238,6 @@ export default async function NewsletterPage({ params }: PageProps) {
         </div>
       </article>
     </div>
+    </>
   )
 }

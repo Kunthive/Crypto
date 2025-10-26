@@ -1,7 +1,13 @@
-export const metadata = {
-  title: "Intent | Milkroad Pro Archive",
-  description: "Learn about the purpose and philosophy behind the Milkroad Pro Archive",
-}
+import { generateSEOMetadata, SEO_CONFIG, SEO_KEYWORDS } from "@/lib/seo"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = generateSEOMetadata({
+  title: "About This Archive - Our Intent and Purpose",
+  description:
+    "Learn about the purpose and philosophy behind the Milkroad Pro Archive. Discover why we made premium cryptocurrency reports publicly accessible for the crypto community.",
+  keywords: [...SEO_KEYWORDS, "about", "purpose", "mission", "philosophy", "open access"],
+  canonical: `${SEO_CONFIG.siteUrl}/intent`,
+})
 
 export default function IntentPage() {
   return (
