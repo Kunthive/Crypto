@@ -5,11 +5,11 @@ export const metadata = {
 
 export default function IntentPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
       <article>
-        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-8 text-balance">Why This Archive Exists</h1>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 sm:mb-8 text-balance">Why This Archive Exists</h1>
 
-        <div className="space-y-6 text-lg leading-relaxed text-foreground">
+        <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground">
           <p>
             Milkroad Pro provides valuable insights into the cryptocurrency market, but access requires a paid
             subscription. During my week-long Pro membership, I collected these reports and decided to make them
@@ -26,8 +26,8 @@ export default function IntentPage() {
             Pro and is shared here for educational purposes.
           </p>
 
-          <div className="bg-muted p-6 rounded-lg border border-border mt-8">
-            <p className="text-sm text-secondary">
+          <div className="bg-card p-6 rounded-lg border border-border mt-8">
+            <p className="text-sm text-secondary/70">
               <strong>Disclaimer:</strong> This archive is provided for educational purposes only. All content is the
               intellectual property of Milkroad Pro. If you find value in these reports, please consider supporting
               Milkroad Pro directly by subscribing to their service.
