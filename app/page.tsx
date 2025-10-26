@@ -35,7 +35,7 @@ export default function Home() {
         
         <div className="mt-8">
           <Link href="/archive">
-            <button className="bg-primary text-white px-6 sm:px-8 py-3 rounded-lg font-medium hover:bg-primary-hover transition-all shadow-md hover:shadow-lg hover:scale-105 text-sm sm:text-base">
+            <button className="bg-foreground text-background px-6 sm:px-8 py-3 rounded-lg font-medium hover:opacity-80 transition-all shadow-md hover:shadow-lg text-sm sm:text-base">
               Browse All Reports
             </button>
           </Link>
@@ -44,16 +44,16 @@ export default function Home() {
 
       {/* Stats Section */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <div className="bg-card border border-border rounded-lg p-6">
-          <div className="text-3xl font-bold text-primary mb-2">{latestNewsletters.length > 0 ? '127+' : '0'}</div>
+        <div className="border border-border rounded-lg p-6 hover:border-foreground transition-colors">
+          <div className="text-3xl font-bold text-foreground mb-2">{latestNewsletters.length > 0 ? '127+' : '0'}</div>
           <div className="text-secondary">Total Reports</div>
         </div>
-        <div className="bg-card border border-border rounded-lg p-6">
-          <div className="text-3xl font-bold text-primary mb-2">100%</div>
+        <div className="border border-border rounded-lg p-6 hover:border-foreground transition-colors">
+          <div className="text-3xl font-bold text-foreground mb-2">100%</div>
           <div className="text-secondary">Complete Archive</div>
         </div>
-        <div className="bg-card border border-border rounded-lg p-6">
-          <div className="text-3xl font-bold text-primary mb-2">Free</div>
+        <div className="border border-border rounded-lg p-6 hover:border-foreground transition-colors">
+          <div className="text-3xl font-bold text-foreground mb-2">Free</div>
           <div className="text-secondary">Public Access</div>
         </div>
       </section>

@@ -44,7 +44,7 @@ export default function Navigation() {
           <div className="flex justify-between items-center h-16 sm:h-20">
             <Link 
               href="/" 
-              className="text-xl sm:text-2xl font-bold text-foreground hover:text-primary transition-colors"
+              className="text-xl sm:text-2xl font-bold text-foreground transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Milkroad Pro Archive
@@ -58,8 +58,8 @@ export default function Navigation() {
                   href={link.href}
                   className={`text-sm font-medium transition-colors ${
                     isActive(link.href)
-                      ? "text-primary border-b-2 border-primary pb-1"
-                      : "text-secondary/70 hover:text-primary"
+                      ? "text-foreground border-b-2 border-foreground pb-1"
+                      : "text-secondary hover:text-foreground"
                   }`}
                 >
                   {link.label}

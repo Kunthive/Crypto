@@ -25,7 +25,6 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
         Search reports
       </label>
       <div className="relative max-w-2xl mb-6">
-        <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-secondary text-lg">🔍</span>
         <input
           id="newsletter-search"
           type="search"
@@ -34,7 +33,7 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           aria-label="Search reports"
-          className="w-full pl-12 pr-4 py-3 sm:py-4 bg-card border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all text-foreground placeholder:text-secondary/60 text-base"
+          className="w-full px-4 py-3 sm:py-4 bg-transparent border-2 border-border rounded-lg focus:outline-none focus:border-foreground transition-all text-foreground placeholder:text-secondary/60 text-base"
         />
       </div>
 
@@ -54,7 +53,7 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 px-4 bg-card rounded-lg border-2 border-dashed border-border">
+          <div className="text-center py-16 px-4 border-2 border-dashed border-border rounded-lg">
             <p className="text-lg font-medium text-secondary mb-2">No results found</p>
             <p className="text-sm text-secondary/70">Try searching with different keywords</p>
           </div>
