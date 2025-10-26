@@ -5,8 +5,6 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
-  // Enhanced compression for better Core Web Vitals
-  compress: true,
   
   // Security headers for SEO trust signals
   async headers() {
