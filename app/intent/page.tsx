@@ -1,0 +1,40 @@
+export const metadata = {
+  title: "Intent | Milkroad Pro Archive",
+  description: "Learn about the purpose and philosophy behind the Milkroad Pro Archive",
+}
+
+export default function IntentPage() {
+  return (
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <article>
+        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-8 text-balance">Why This Archive Exists</h1>
+
+        <div className="space-y-6 text-lg leading-relaxed text-foreground">
+          <p>
+            Milkroad Pro provides valuable insights into the cryptocurrency market, but access requires a paid
+            subscription. During my week-long Pro membership, I collected these reports and decided to make them
+            publicly available.
+          </p>
+
+          <p>
+            The crypto community thrives on accessible information and shared knowledge. By making these reports public,
+            I hope to help others interested in cryptocurrencies stay informed and make better decisions.
+          </p>
+
+          <p>
+            This archive contains reports that were previously behind a paywall. All content is originally from Milkroad
+            Pro and is shared here for educational purposes.
+          </p>
+
+          <div className="bg-muted p-6 rounded-lg border border-border mt-8">
+            <p className="text-sm text-secondary">
+              <strong>Disclaimer:</strong> This archive is provided for educational purposes only. All content is the
+              intellectual property of Milkroad Pro. If you find value in these reports, please consider supporting
+              Milkroad Pro directly by subscribing to their service.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  )
+}
