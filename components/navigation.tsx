@@ -128,7 +128,7 @@ export default function Navigation() {
                   href={link.href}
                   className={`block py-4 px-4 rounded-lg text-base font-medium transition-all ${
                     isActive(link.href) 
-                      ? "text-primary bg-highlight border-l-4 border-primary" 
+                      ? "text-foreground bg-highlight border-l-4 border-foreground" 
                       : "text-foreground hover:bg-muted"
                   }`}
                   onClick={() => setIsOpen(false)}
