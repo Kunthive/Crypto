@@ -54,6 +54,25 @@ export default async function NewsletterPage({ params }: PageProps) {
   const previousNewsletter = currentIndex < allNewsletters.length - 1 ? allNewsletters[currentIndex + 1] : null
   const nextNewsletter = currentIndex > 0 ? allNewsletters[currentIndex - 1] : null
 
+  // Clean up broken markdown links (social sharing links with missing link text)
+  const cleanContent = newsletter.content
+    .split('\n')
+    .filter(line => {
+      const trimmed = line.trim()
+      // Filter out [[MILK]] references
+      if (/\[\[MILK\]\]/.test(trimmed)) {
+        return false
+      }
+      // Filter out lines that are malformed markdown links (](url)[) - social sharing links
+      const isBrokenLink = /^\]\s*\(https?:\/\/[^\)]+\)\s*\[?\s*$/.test(trimmed)
+      // Filter out standalone brackets
+      const isEmptyBrackets = /^\[?\s*\]?\s*$/.test(trimmed)
+      // Filter out just opening brackets like "["
+      const isStandaloneBracket = /^\[[\s]*$/.test(trimmed)
+      return !isBrokenLink && !isEmptyBrackets && !isStandaloneBracket
+    })
+    .join('\n')
+
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       {/* Article Header */}
@@ -127,7 +146,7 @@ export default async function NewsletterPage({ params }: PageProps) {
               ),
             }}
           >
-            {newsletter.content}
+            {cleanContent}
           </ReactMarkdown>
         </div>
 
