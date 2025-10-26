@@ -24,7 +24,7 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
       <label htmlFor="newsletter-search" className="sr-only">
         Search reports
       </label>
-      <div className="relative max-w-2xl">
+      <div className="relative max-w-2xl mb-6">
         <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-secondary text-lg">🔍</span>
         <input
           id="newsletter-search"
@@ -34,12 +34,14 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           aria-label="Search reports"
-          className="w-full pl-12 pr-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition-colors text-foreground placeholder-secondary"
+          className="w-full pl-12 pr-4 py-3 sm:py-4 bg-card border-2 border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all text-foreground placeholder:text-secondary/60 text-base"
         />
       </div>
 
-      <p className="text-sm text-secondary mt-3" aria-live="polite">
-        Showing {filtered.length} of {initialNewsletters.length} reports
+      <p className="text-sm text-secondary/70 mb-6" aria-live="polite">
+        {filtered.length === initialNewsletters.length 
+          ? `Showing all ${initialNewsletters.length} reports`
+          : `Found ${filtered.length} of ${initialNewsletters.length} reports`}
       </p>
 
       <section className="mt-6" aria-label="Search results">
@@ -52,8 +54,9 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-12">
-            <p className="text-lg text-secondary">No results found. Try a different search.</p>
+          <div className="text-center py-16 px-4 bg-card rounded-lg border-2 border-dashed border-border">
+            <p className="text-lg font-medium text-secondary mb-2">No results found</p>
+            <p className="text-sm text-secondary/70">Try searching with different keywords</p>
           </div>
         )}
       </section>

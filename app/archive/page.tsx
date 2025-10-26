@@ -5,10 +5,10 @@ export default function ArchivePage() {
   const newsletters = getAllNewsletters()
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
       <section className="mb-12">
-        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-8 text-balance">Complete Archive</h1>
-        <p className="text-secondary mb-6">Search and browse all past reports.</p>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 sm:mb-8 text-balance">Complete Archive</h1>
+        <p className="text-base sm:text-lg text-secondary/70 mb-6">Search and browse all past reports.</p>
         <NewsletterSearch initialNewsletters={newsletters} />
       </section>
 

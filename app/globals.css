@@ -4,74 +4,78 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.556 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.205 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  /* New Color Palette */
+  --palette-bg: #F5F4ED;
+  --palette-card: #FEF3C7;
+  --palette-text: #121212;
+  --palette-text-secondary: rgba(18, 18, 18, 0.7);
+  --palette-primary: #C6613F;
+  --palette-primary-hover: #A54E2E;
+  --palette-secondary: #D97706;
+  --palette-error: #E81123;
+  --palette-warning: #D97706;
+  --palette-success: #4CAF50;
+  --palette-highlight: #FFFFCC;
+  --palette-divider: rgba(18,18,18,0.1);
+
+  --background: var(--palette-bg);
+  --foreground: var(--palette-text);
+  --card: var(--palette-card);
+  --card-foreground: var(--palette-text);
+  --popover: var(--palette-card);
+  --popover-foreground: var(--palette-text);
+  --primary: var(--palette-primary);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--palette-secondary);
+  --secondary-foreground: #FFFFFF;
+  --muted: var(--palette-highlight);
+  --muted-foreground: var(--palette-text);
+  --accent: var(--palette-primary);
+  --accent-foreground: #FFFFFF;
+  --destructive: var(--palette-error);
+  --destructive-foreground: #FFFFFF;
+  --border: var(--palette-divider);
+  --input: rgba(18,18,18,0.04);
+  --ring: var(--palette-primary);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: var(--palette-card);
+  --sidebar-foreground: var(--palette-text);
+  --sidebar-primary: var(--palette-primary);
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: var(--palette-highlight);
+  --sidebar-accent-foreground: var(--palette-text);
+  --sidebar-border: var(--palette-divider);
+  --sidebar-ring: var(--palette-primary);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.708 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.985 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --background: #121212;
+  --foreground: #F5F4ED;
+  --card: #1a1a1a;
+  --card-foreground: #F5F4ED;
+  --popover: #1a1a1a;
+  --popover-foreground: #F5F4ED;
+  --primary: var(--palette-primary);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--palette-secondary);
+  --secondary-foreground: #FFFFFF;
+  --muted: #2b2b2b;
+  --muted-foreground: #F5F4ED;
+  --accent: var(--palette-primary);
+  --accent-foreground: #FFFFFF;
+  --destructive: var(--palette-error);
+  --destructive-foreground: #FFFFFF;
+  --border: rgba(255,255,255,0.06);
+  --input: rgba(255,255,255,0.03);
+  --ring: var(--palette-primary);
+  --sidebar: #121212;
+  --sidebar-foreground: #F5F4ED;
+  --sidebar-primary: var(--palette-primary);
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #2b2b2b;
+  --sidebar-accent-foreground: #F5F4ED;
+  --sidebar-border: rgba(255,255,255,0.06);
+  --sidebar-ring: var(--palette-primary);
 }
 
 @theme inline {
@@ -104,6 +108,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-highlight: var(--palette-highlight);
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -124,15 +129,16 @@
 }
 
 a {
-  @apply text-foreground hover:text-secondary transition-colors;
+  @apply text-primary hover:text-primary transition-colors;
 }
 
 button {
-  @apply transition-colors;
+  @apply transition-all duration-200;
 }
 
 code {
-  @apply bg-muted px-2 py-1 rounded text-sm font-mono;
+  @apply px-2 py-1 rounded text-sm font-mono;
+  background-color: var(--palette-highlight);
 }
 
 pre {
@@ -141,4 +147,61 @@ pre {
 
 pre code {
   @apply bg-transparent px-0 py-0;
+}
+
+/* Custom utility classes */
+.bg-highlight {
+  background-color: var(--palette-highlight);
+}
+
+.bg-primary-hover {
+  background-color: var(--palette-primary-hover);
+}
+
+.hover\:bg-primary-hover:hover {
+  background-color: var(--palette-primary-hover);
+}
+
+/* Mobile improvements */
+@media (max-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Ensure floating button doesn't overlap content */
+  body {
+    padding-bottom: 0;
+  }
+  
+  /* Better mobile navigation */
+  nav {
+    padding: 0 1rem;
+  }
+  
+  /* Improved mobile menu animations */
+  .mobile-menu-enter {
+    animation: slideInRight 0.3s ease-out;
+  }
+  
+  .mobile-menu-exit {
+    animation: slideOutRight 0.3s ease-in;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
 }
