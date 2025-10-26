@@ -1,3 +1,6 @@
+import fs from "fs"
+import path from "path"
+
 export interface Newsletter {
   id: string
   title: string
@@ -5,99 +8,58 @@ export interface Newsletter {
   date?: string
 }
 
-// Static newsletter data - in production, this would come from a database or API
-const staticNewsletters: Newsletter[] = [
-  {
-    id: "bitcoin-market-analysis",
-    title: "Bitcoin Market Analysis",
-    content: `# Bitcoin Market Analysis
+const NEWSLETTERS_DIR = path.join(process.cwd(), "public", "newsletters")
 
-## Executive Summary
-Bitcoin continues to show strong momentum in the current market cycle. This report analyzes key technical indicators and market sentiment.
+let cached: Newsletter[] | null = null
 
-## Market Overview
-- Current Price: $45,000 - $50,000 range
-- Market Cap: $900B+
-- Trading Volume: Increasing
+function parseTitleFromContent(content: string, fallback: string) {
+  const lines = content.split("\n")
+  for (const line of lines) {
+    const trimmed = line.trim()
+    if (trimmed.startsWith("# ")) return trimmed.replace(/^#\s+/, "").trim()
+  }
+  return fallback
+}
 
-## Technical Analysis
-Bitcoin has broken through several resistance levels, indicating bullish sentiment. The 200-day moving average remains a key support level.
+export function loadNewsletters(): Newsletter[] {
+  if (cached) return cached
 
-### Key Levels
-- Resistance: $52,000
-- Support: $42,000
-- Moving Average (200-day): $41,500
+  let files: string[] = []
+  try {
+    files = fs.readdirSync(NEWSLETTERS_DIR)
+  } catch (e) {
+    // If directory doesn't exist, return empty
+    cached = []
+    return cached
+  }
 
-## Market Sentiment
-Institutional adoption continues to grow, with major corporations adding Bitcoin to their treasuries. This long-term trend supports price appreciation.
+  const newsletters: Newsletter[] = files
+    .filter((f) => f.endsWith(".md") || f.endsWith(".markdown"))
+    .map((file) => {
+      const full = path.join(NEWSLETTERS_DIR, file)
+      const raw = fs.readFileSync(full, "utf8")
+      const id = file.replace(/\.md$|\.markdown$/i, "")
+      const title = parseTitleFromContent(raw, id)
+      return {
+        id,
+        title,
+        content: raw,
+      } as Newsletter
+    })
 
-## Conclusion
-The technical setup remains favorable for continued upside movement. Traders should watch for consolidation patterns around key resistance levels.`,
-  },
-  {
-    id: "ethereum-defi-report",
-    title: "Ethereum DeFi Report",
-    content: `# Ethereum DeFi Report
-
-## Overview
-Ethereum's DeFi ecosystem continues to expand with new protocols and increased total value locked (TVL).
-
-## Current DeFi Metrics
-- Total Value Locked: $50B+
-- Number of Active Protocols: 500+
-- Daily Active Users: 2M+
-
-## Major DeFi Platforms
-1. **Uniswap** - Leading DEX with $3B+ TVL
-2. **Aave** - Largest lending protocol
-3. **Curve** - Stablecoin exchange specialist
-4. **Lido** - Liquid staking leader
-
-## Opportunities
-- Yield farming opportunities in emerging protocols
-- Cross-chain DeFi expansion
-- Layer 2 scaling solutions
-
-## Risks
-- Smart contract vulnerabilities
-- Regulatory uncertainty
-- Market volatility
-
-## Recommendations
-Diversify across multiple protocols and maintain proper risk management strategies.`,
-  },
-  {
-    id: "crypto-regulations-update",
-    title: "Crypto Regulations Update",
-    content: `# Crypto Regulations Update
-
-## Global Regulatory Landscape
-Governments worldwide are developing frameworks for cryptocurrency regulation.
-
-## Key Developments
-- **United States**: SEC continues enforcement actions
-- **European Union**: MiCA regulation implementation
-- **Asia**: Mixed approaches across different countries
-
-## Impact on Markets
-Regulatory clarity generally supports long-term adoption and institutional participation.
-
-## Compliance Considerations
-- KYC/AML requirements
-- Tax reporting obligations
-- Custody standards
-
-## Future Outlook
-Expect continued regulatory evolution as governments balance innovation with consumer protection.`,
-  },
-]
+  // Sort newest-first by filename descending (you can change to date if frontmatter added)
+  newsletters.sort((a, b) => b.id.localeCompare(a.id))
+  cached = newsletters
+  return newsletters
+}
 
 export function getAllNewsletters(): Newsletter[] {
-  return staticNewsletters.sort((a, b) => b.id.localeCompare(a.id))
+  return loadNewsletters()
 }
 
 export function getNewsletterById(id: string): Newsletter | null {
-  return staticNewsletters.find((n) => n.id === id) || null
+  const all = loadNewsletters()
+  return all.find((n) => n.id === id) || null
 }
 
 export function getLatestNewsletters(count = 3): Newsletter[] {

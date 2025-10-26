@@ -1,6 +1,7 @@
 import { getNewsletterById, getAllNewsletters } from "@/lib/newsletters"
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import ReactMarkdown from "react-markdown"
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -46,42 +47,67 @@ export default async function NewsletterPage({ params }: PageProps) {
   const previousNewsletter = currentIndex < allNewsletters.length - 1 ? allNewsletters[currentIndex + 1] : null
   const nextNewsletter = currentIndex > 0 ? allNewsletters[currentIndex - 1] : null
 
+  // Fallback/simple renderer: convert markdown-like blocks to elements so the
+  // content is visible even if a markdown plugin isn't processing certain
+  // constructs. This handles H1/H2/H3, lists that start with "- ", and
+  // paragraph blocks separated by blank lines.
   const renderContent = (content: string) => {
-    return content.split("\n").map((line, idx) => {
-      if (line.startsWith("# ")) {
+    if (!content) return null
+
+    // Normalize CRLF and split into blocks by two or more newlines
+    const blocks = content.replace(/\r\n/g, "\n").split(/\n{2,}/)
+
+    return blocks.map((block, i) => {
+      const trimmed = block.trim()
+
+      if (trimmed.startsWith("# ")) {
         return (
-          <h1 key={idx} className="text-3xl font-bold text-foreground mt-8 mb-4">
-            {line.replace("# ", "")}
+          <h1 key={i} className="text-3xl font-bold text-foreground mt-8 mb-4">
+            {trimmed.replace(/^#\s+/, "")}
           </h1>
         )
       }
-      if (line.startsWith("## ")) {
+      if (trimmed.startsWith("## ")) {
         return (
-          <h2 key={idx} className="text-2xl font-bold text-foreground mt-6 mb-3">
-            {line.replace("## ", "")}
+          <h2 key={i} className="text-2xl font-bold text-foreground mt-6 mb-3">
+            {trimmed.replace(/^##\s+/, "")}
           </h2>
         )
       }
-      if (line.startsWith("### ")) {
+      if (trimmed.startsWith("### ")) {
         return (
-          <h3 key={idx} className="text-xl font-semibold text-foreground mt-4 mb-2">
-            {line.replace("### ", "")}
+          <h3 key={i} className="text-xl font-semibold text-foreground mt-4 mb-2">
+            {trimmed.replace(/^###\s+/, "")}
           </h3>
         )
       }
-      if (line.startsWith("- ")) {
+
+      // Simple unordered list support: lines starting with "- "
+      const lines = trimmed.split(/\n+/)
+      const isList = lines.every((ln) => ln.trim().startsWith("- ") || ln.trim() === "") && lines.some((ln) => ln.trim().startsWith("- "))
+      if (isList) {
+        const items = lines
+          .map((ln) => ln.trim())
+          .filter((ln) => ln.startsWith("- "))
+          .map((ln) => ln.replace(/^-\s+/, ""))
         return (
-          <li key={idx} className="text-foreground ml-4">
-            {line.replace("- ", "")}
-          </li>
+          <ul key={i} className="ml-6 list-disc space-y-2 text-foreground">
+            {items.map((it, idx) => (
+              <li key={idx}>{it}</li>
+            ))}
+          </ul>
         )
       }
-      if (line.trim() === "") {
-        return <div key={idx} className="h-2" />
-      }
+
+      // Default: render as paragraph, preserving inline links/images as raw text
       return (
-        <p key={idx} className="text-lg text-foreground leading-relaxed mb-4">
-          {line}
+        <p key={i} className="text-lg text-foreground leading-relaxed mb-4">
+          {lines.map((ln, idx) => (
+            <span key={idx}>
+              {ln}
+              {idx < lines.length - 1 ? "\n" : ""}
+            </span>
+          ))}
         </p>
       )
     })
@@ -90,8 +116,10 @@ export default async function NewsletterPage({ params }: PageProps) {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       {/* Article Header */}
-      <article>
-        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-2 text-balance">{newsletter.title}</h1>
+      <article aria-labelledby="newsletter-title">
+        <h1 id="newsletter-title" className="text-4xl sm:text-5xl font-bold text-foreground mb-2 text-balance">
+          {newsletter.title}
+        </h1>
         <div className="h-px bg-border my-8" />
 
         {/* Content */}
