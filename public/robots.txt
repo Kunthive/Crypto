@@ -1,4 +1,41 @@
+# Comprehensive robots.txt for Milkroad Pro Archive
+# Optimized for maximum search engine crawling efficiency
+
+# Primary search engine crawlers
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /*.json$
+Disallow: /*?*search=*
 
+# Crawl delay for efficient resource usage
+Crawl-delay: 1
+
+# Google-specific directives
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Crawl-delay: 0
+
+# Bing-specific directives
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+Crawl-delay: 0
+
+# Baidu-specific directives
+User-agent: Baiduspider
+Allow: /
+Disallow: /api/
+
+# Yandex-specific directives
+User-agent: Yandex
+Allow: /
+Disallow: /api/
+
+# Sitemaps
 Sitemap: https://milkroad-archive.vercel.app/sitemap.xml
+
+# Additional metadata
+# Host: milkroad-archive.vercel.app
