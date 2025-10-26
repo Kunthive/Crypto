@@ -1,4 +1,4 @@
-# MR PRO | This Crypto Cycle Is Different Than The Others
+# This Crypto Cycle Is Different Than The Others
 
 ## Eyes Onchain Report: Top Charts in Web3
 

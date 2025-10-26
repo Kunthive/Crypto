@@ -1,4 +1,4 @@
-# MR PRO | The Macro Environment: From 2020 to Today and Beyond
+# The Macro Environment: From 2020 to Today and Beyond
 
 ## Part 2: Navigating the Tides of Economic Change
 

@@ -1,4 +1,4 @@
-# MR PRO | Who Made Billions of $$ From NFTs?
+# Who Made Billions of $$ From NFTs?
 
 ## OpenSea Value Accrual
 

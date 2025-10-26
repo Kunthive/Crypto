@@ -1,4 +1,4 @@
-# MR PRO | The Story of Adidas' Onchain Journey
+# The Story of Adidas' Onchain Journey
 
 ## A Web3 Playbook for Brands
 

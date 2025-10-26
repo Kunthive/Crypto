@@ -1,4 +1,4 @@
-# MR PRO | Staking-As-A-Service, A New B(Tri?)illion Dollar Industry
+# Staking-As-A-Service, A New B(Tri?)illion Dollar Industry
 
 ## Securing Blockchains and Capitalizing on the Future of Crypto
 

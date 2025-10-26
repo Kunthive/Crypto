@@ -1,4 +1,4 @@
-# MR PRO | State of Lens Protocol: 2023 Annual Onchain Report
+# State of Lens Protocol: 2023 Annual Onchain Report
 
 ## A New Engagement Feature is Reshaping Social Media
 

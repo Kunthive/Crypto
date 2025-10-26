@@ -1,4 +1,4 @@
-# MR PRO | Economics, Tokenomics and Value Accrual of L2s
+# Economics, Tokenomics and Value Accrual of L2s
 
 ## Which Layer 2 Tokens Are the Best Investments?
 

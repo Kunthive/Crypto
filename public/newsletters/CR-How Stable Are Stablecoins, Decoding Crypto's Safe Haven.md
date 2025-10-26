@@ -1,4 +1,4 @@
-# MR PRO | How Stable Are Stablecoins? Decoding Crypto's Safe Haven
+# How Stable Are Stablecoins? Decoding Crypto's Safe Haven
 
 ## Exploring the Impact, Safety, and Adoption of Blockchain's Killer App
 

@@ -1,4 +1,4 @@
-# MR PRO | The Business of Blockchains
+# The Business of Blockchains
 
 ## Revenues, Fees, Expenses, and More
 

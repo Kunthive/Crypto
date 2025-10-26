@@ -1,4 +1,4 @@
-# MR PRO | 3 Thriving Web3 Industries & How Value Accrues on Blockchains
+# 3 Thriving Web3 Industries & How Value Accrues on Blockchains
 
 ## Show This to Whoever Doesn't Believe in Web3!
 

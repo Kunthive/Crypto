@@ -1,4 +1,4 @@
-# MR PRO | How We Know the Next Bull Cycle Will Come
+# How We Know the Next Bull Cycle Will Come
 
 ## The Onchain Migration has Started
 

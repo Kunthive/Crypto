@@ -1,4 +1,4 @@
-# MR PRO | How To Invest In Application Tokens Successfully 🚀
+# How To Invest In Application Tokens Successfully 🚀
 
 ## Prepare for life-changing money
 

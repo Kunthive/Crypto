@@ -1,4 +1,4 @@
-# MR PRO | Is Solana’s Onchain Activity Legit or Totally Fake?
+# Is Solana’s Onchain Activity Legit or Totally Fake?
 
 ## Uncovering the truth behind Solana’s sudden increased onchain activity.
 

@@ -1,4 +1,4 @@
-# MR PRO | Where Value Flows Onchain: Uniswap Edition
+# Where Value Flows Onchain: Uniswap Edition
 
 ## Everyone Profits Besides Uniswap?
 

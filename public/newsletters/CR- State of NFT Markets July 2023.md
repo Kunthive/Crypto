@@ -1,4 +1,4 @@
-# MR PRO | State of NFT Markets July 2023
+# State of NFT Markets July 2023
 
 ## Time To Sell or Is Another NFT Cycle Coming?
 

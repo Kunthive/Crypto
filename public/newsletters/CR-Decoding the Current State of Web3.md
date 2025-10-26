@@ -1,4 +1,4 @@
-# MR PRO | Decoding the Current State of Web3: Inflation, $ETH Staking & NFTs
+# Decoding the Current State of Web3: Inflation, $ETH Staking & NFTs
 
 ## Understand the real-time dynamics of inflation, the surge in Ethereum staking, and the downturn in the NFT market.
 

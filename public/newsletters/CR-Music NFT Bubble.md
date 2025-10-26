@@ -1,4 +1,4 @@
-# MR PRO | Did The Music NFT Bubble Just Pop?
+# Did The Music NFT Bubble Just Pop?
 
 ## And where do we go from here...
 

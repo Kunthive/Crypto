@@ -1,4 +1,4 @@
-# MR PRO | Is Reddit Writing the Playbook for Bringing Web3 to the Masses?
+# Is Reddit Writing the Playbook for Bringing Web3 to the Masses?
 
 ## Strap in for mainstream onboarding 101
 

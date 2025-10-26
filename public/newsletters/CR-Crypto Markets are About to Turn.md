@@ -1,4 +1,4 @@
-# MR PRO | 🚨 Crypto Markets are About to Turn
+# 🚨 Crypto Markets are About to Turn
 
 ## 30 Charts Showing the Stars are Aligning for Crypto Markets
 

@@ -1,4 +1,4 @@
-# MR PRO | The Inflection Point For Real World Assets Onchain
+# The Inflection Point For Real World Assets Onchain
 
 ## Yield-bearing Stablecoins: The Next Big Thing
 

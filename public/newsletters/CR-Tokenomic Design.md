@@ -1,4 +1,4 @@
-# MR PRO | Is This Web3's Greatest Tokenomic Design?
+# Is This Web3's Greatest Tokenomic Design?
 
 ## And no, it's not digital gold...
 

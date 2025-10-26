@@ -1,4 +1,4 @@
-# MR PRO | Is Solana the Next Big Thing?
+# Is Solana the Next Big Thing?
 
 ## The State of Solana Q4 2023
 

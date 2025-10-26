@@ -1,4 +1,4 @@
-# MR PRO | Is Ethereum Scaling?
+# Is Ethereum Scaling?
 
 ## Breaking down Ethereum's current on-chain bull run during this bear market
 

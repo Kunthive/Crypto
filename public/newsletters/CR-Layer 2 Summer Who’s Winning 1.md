@@ -1,4 +1,4 @@
-# MR PRO | Layer 2 Summer: Who’s Winning?
+# Layer 2 Summer: Who’s Winning?
 
 ## Arbitrum, Optimism, Polygon and Immutable
 

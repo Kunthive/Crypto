@@ -1,4 +1,4 @@
-# MR PRO | Pudgy Penguins: From 0 to Hero
+# Pudgy Penguins: From 0 to Hero
 
 ## Comeback Story of the Year
 

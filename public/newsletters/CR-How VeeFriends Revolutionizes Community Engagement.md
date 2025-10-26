@@ -1,4 +1,4 @@
-# MR PRO | How VeeFriends Revolutionizes Community Engagement
+# How VeeFriends Revolutionizes Community Engagement
 
 ## Free CryptoPunk Inside 🤯
 

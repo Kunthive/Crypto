@@ -1,4 +1,4 @@
-# MR PRO | The Great NFT Marketplace War. Who's Winning And Why?
+# The Great NFT Marketplace War. Who's Winning And Why?
 
 ## A story of innovation, rugs and tokens!
 

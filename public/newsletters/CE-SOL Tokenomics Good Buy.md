@@ -1,4 +1,4 @@
-# MR PRO | $SOL Tokenomics. Good Buy?
+# $SOL Tokenomics. Good Buy?
 
 ## Read This Before Buying $SOL!
 

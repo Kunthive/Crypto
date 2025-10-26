@@ -1,4 +1,4 @@
-# MR PRO | Are Bitcoin NFTs and L2s The Next Big Thing?
+# Are Bitcoin NFTs and L2s The Next Big Thing?
 
 ## Breaking Down The Stacks Revolution
 

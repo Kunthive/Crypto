@@ -1,4 +1,4 @@
-# MR PRO | Price Predictions for $BTC, $ETH & $SOL
+# Price Predictions for $BTC, $ETH & $SOL
 
 ## Aiming to Identify the Bull Market Top
 

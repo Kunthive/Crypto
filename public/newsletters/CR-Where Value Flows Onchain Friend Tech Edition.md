@@ -1,4 +1,4 @@
-# MR PRO | Where Value Flows Onchain: Friend.Tech Edition
+# Where Value Flows Onchain: Friend.Tech Edition
 
 ## Base Profits $482k, $ETH Burned $254k
 

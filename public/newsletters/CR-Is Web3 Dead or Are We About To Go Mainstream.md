@@ -1,4 +1,4 @@
-# MR PRO | Is Web3 Dead or Are We About To Go Mainstream?
+# Is Web3 Dead or Are We About To Go Mainstream?
 
 ## An Inflection Point Of Adoption, Innovation and Markets Is Brewing
 

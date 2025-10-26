@@ -1,4 +1,4 @@
-# MR PRO | Top 5 Charts We're Keeping Our Eye On
+# Top 5 Charts We're Keeping Our Eye On
 
 ## A Perfect Storm of Macro Trends, Crypto Fundamentals, and Web3 Maturation
 

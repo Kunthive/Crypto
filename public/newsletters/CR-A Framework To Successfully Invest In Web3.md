@@ -1,4 +1,4 @@
-# MR PRO | A Framework To Successfully Invest In Web3
+# A Framework To Successfully Invest In Web3
 
 ## Capitalize On The Upside Of Crypto Without Being A Professional Investor
 

@@ -1,4 +1,4 @@
-# MR PRO | Should You Invest in Telegram Bots?
+# Should You Invest in Telegram Bots?
 
 ## Tokenomics Breakdown of $UNIBOT
 

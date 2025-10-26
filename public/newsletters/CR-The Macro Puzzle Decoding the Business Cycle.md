@@ -1,4 +1,4 @@
-# MR PRO | The Macro Puzzle: Decoding the Business Cycle
+# The Macro Puzzle: Decoding the Business Cycle
 
 ## Part 1: Mastering the Forces that Shape Our Economies
 

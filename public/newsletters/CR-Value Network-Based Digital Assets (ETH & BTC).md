@@ -1,4 +1,4 @@
-# MR PRO | How To Value Network-Based Digital Assets (ETH & BTC)
+# How To Value Network-Based Digital Assets (ETH & BTC)
 
 ## Understanding the cyclical and secular trends of technological adoption
 

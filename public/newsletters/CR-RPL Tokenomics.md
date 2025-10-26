@@ -1,4 +1,4 @@
-# MR PRO | $RPL Tokenomics: Rocket Pool To The Moon? 🚀
+# $RPL Tokenomics: Rocket Pool To The Moon? 🚀
 
 ## Securing Blockchains and Capitalizing on the Future of Crypto
 

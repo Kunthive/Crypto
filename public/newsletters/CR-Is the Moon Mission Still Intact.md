@@ -1,4 +1,4 @@
-# MR PRO | Is the Moon Mission Still Intact? 🚀
+# Is the Moon Mission Still Intact? 🚀
 
 ## Inflation, ETFs, NFTs & Onchain Consumer Apps
 

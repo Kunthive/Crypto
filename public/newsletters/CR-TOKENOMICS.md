@@ -1,4 +1,4 @@
-# MR PRO | $LOOKS vs. $BLUR vs. $X2Y2 Tokenomics
+# $LOOKS vs. $BLUR vs. $X2Y2 Tokenomics
 
 ## The Sustainability of NFT Marketplace Tokens
 

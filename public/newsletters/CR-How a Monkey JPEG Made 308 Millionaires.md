@@ -1,4 +1,4 @@
-# MR PRO | BAYC: How a Monkey JPEG Made 308 Millionaires
+# BAYC: How a Monkey JPEG Made 308 Millionaires
 
 ## Will it Ever Happen Again?
 

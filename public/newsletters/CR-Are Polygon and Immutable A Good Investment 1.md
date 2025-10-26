@@ -1,4 +1,4 @@
-# MR PRO | Are Polygon and Immutable A Good Investment?
+# Are Polygon and Immutable A Good Investment?
 
 ## L2 Token Analysis Part 2: $IMX and $MATIC ($POL)
 

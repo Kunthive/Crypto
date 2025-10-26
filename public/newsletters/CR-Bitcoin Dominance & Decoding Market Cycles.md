@@ -1,4 +1,4 @@
-# MR PRO | Bitcoin Dominance & Decoding Market Cycles
+# Bitcoin Dominance & Decoding Market Cycles
 
 ## History Doesn’t Repeat, But It Often Rhymes
 

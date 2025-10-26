@@ -1,4 +1,4 @@
-# MR PRO | How Early Are We? A Deep Dive Into The State of Web3
+# How Early Are We? A Deep Dive Into The State of Web3
 
 ## Leveraging On-chain Metrics to Determine Your Entry Point and Potential Investment Opportunities.
 

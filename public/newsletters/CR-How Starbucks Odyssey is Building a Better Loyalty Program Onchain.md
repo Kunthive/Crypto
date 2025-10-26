@@ -1,4 +1,4 @@
-# MR PRO | How Starbucks Odyssey is Building a Better Loyalty Program Onchain
+# How Starbucks Odyssey is Building a Better Loyalty Program Onchain
 
 ## A Case Study for Marketers
 
