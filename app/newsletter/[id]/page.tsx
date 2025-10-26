@@ -10,13 +10,15 @@ interface PageProps {
 export async function generateStaticParams() {
   const newsletters = getAllNewsletters()
   return newsletters.map((newsletter) => ({
-    id: newsletter.id,
+    id: encodeURIComponent(newsletter.id),
   }))
 }
 
 export async function generateMetadata({ params }: PageProps) {
   const { id } = await params
-  const newsletter = getNewsletterById(id)
+  // Decode the URL-encoded ID to match the original filename
+  const decodedId = decodeURIComponent(id)
+  const newsletter = getNewsletterById(decodedId)
 
   if (!newsletter) {
     return {
@@ -36,14 +38,16 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function NewsletterPage({ params }: PageProps) {
   const { id } = await params
-  const newsletter = getNewsletterById(id)
+  // Decode the URL-encoded ID to match the original filename
+  const decodedId = decodeURIComponent(id)
+  const newsletter = getNewsletterById(decodedId)
 
   if (!newsletter) {
     notFound()
   }
 
   const allNewsletters = getAllNewsletters()
-  const currentIndex = allNewsletters.findIndex((n) => n.id === id)
+  const currentIndex = allNewsletters.findIndex((n) => n.id === decodedId)
   const previousNewsletter = currentIndex < allNewsletters.length - 1 ? allNewsletters[currentIndex + 1] : null
   const nextNewsletter = currentIndex > 0 ? allNewsletters[currentIndex - 1] : null
 
@@ -129,7 +133,7 @@ export default async function NewsletterPage({ params }: PageProps) {
         <div className="h-px bg-border my-12" />
         <div className="flex gap-4 justify-between">
           {previousNewsletter ? (
-            <Link href={`/newsletter/${previousNewsletter.id}`}>
+            <Link href={`/newsletter/${encodeURIComponent(previousNewsletter.id)}`}>
               <button className="flex items-center gap-2 px-6 py-3 border border-border rounded-lg hover:bg-muted transition-colors text-foreground font-medium">
                 ← Previous Report
               </button>
@@ -139,7 +143,7 @@ export default async function NewsletterPage({ params }: PageProps) {
           )}
 
           {nextNewsletter ? (
-            <Link href={`/newsletter/${nextNewsletter.id}`}>
+            <Link href={`/newsletter/${encodeURIComponent(nextNewsletter.id)}`}>
               <button className="flex items-center gap-2 px-6 py-3 border border-border rounded-lg hover:bg-muted transition-colors text-foreground font-medium">
                 Next Report →
               </button>
