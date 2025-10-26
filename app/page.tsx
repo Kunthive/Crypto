@@ -1,5 +1,15 @@
 import Link from "next/link"
 import { getLatestNewsletters } from "@/lib/newsletters"
+import { generateSEOMetadata, SEO_KEYWORDS, SEO_CONFIG } from "@/lib/seo"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = generateSEOMetadata({
+  title: "Milkroad Pro Archive - Premium Cryptocurrency Reports Collection",
+  description:
+    "Access the complete archive of Milkroad Pro reports featuring premium cryptocurrency market analysis, insights, and investment intelligence. Free public access to all historical Milkroad Pro newsletters.",
+  keywords: SEO_KEYWORDS,
+  canonical: SEO_CONFIG.siteUrl,
+})
 
 export default function Home() {
   const latestNewsletters = getLatestNewsletters(3)

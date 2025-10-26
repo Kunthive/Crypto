@@ -5,6 +5,8 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
+import { generateSEOMetadata, generateArticleStructuredData, SEO_CONFIG, SEO_KEYWORDS } from "@/lib/seo"
+import type { Metadata } from "next"
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -17,7 +19,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params
   // Decode the URL-encoded ID to match the original filename
   const decodedId = decodeURIComponent(id)
@@ -29,14 +31,22 @@ export async function generateMetadata({ params }: PageProps) {
     }
   }
 
-  return {
-    title: `${newsletter.title} | Milkroad Pro Archive`,
-    description: newsletter.content.substring(0, 160),
-    openGraph: {
-      title: newsletter.title,
-      description: newsletter.content.substring(0, 160),
-    },
-  }
+  const url = `${SEO_CONFIG.siteUrl}/newsletter/${id}`
+  const description = newsletter.content.substring(0, 155) + "..."
+  
+  return generateSEOMetadata({
+    title: newsletter.title,
+    description: `${description} - Milkroad Pro Report covering cryptocurrency market analysis and insights.`,
+    keywords: [
+      ...SEO_KEYWORDS,
+      newsletter.title.toLowerCase(),
+      "crypto report",
+      "market analysis",
+      "cryptocurrency insights",
+    ],
+    canonical: url,
+    ogType: "article",
+  })
 }
 
 export default async function NewsletterPage({ params }: PageProps) {
@@ -73,10 +83,63 @@ export default async function NewsletterPage({ params }: PageProps) {
     })
     .join('\n')
 
+  const url = `${SEO_CONFIG.siteUrl}/newsletter/${id}`
+  const description = newsletter.content.substring(0, 155)
+  
+  const articleStructuredData = generateArticleStructuredData({
+    headline: newsletter.title,
+    description: description,
+    datePublished: new Date().toISOString(),
+    dateModified: new Date().toISOString(),
+    author: {
+      name: "Milkroad Pro",
+    },
+    publisher: {
+      name: "Milkroad Pro Archive",
+      logo: `${SEO_CONFIG.siteUrl}/placeholder.svg`,
+    },
+    url,
+  })
+
+  // Breadcrumb structured data
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SEO_CONFIG.siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Archive",
+        item: `${SEO_CONFIG.siteUrl}/archive`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: newsletter.title,
+        item: url,
+      },
+    ],
+  }
+
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-      {/* Article Header */}
-      <article aria-labelledby="newsletter-title">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
+      />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        {/* Article Header */}
+        <article aria-labelledby="newsletter-title" itemScope itemType="https://schema.org/Article">
         <h1 id="newsletter-title" className="text-4xl sm:text-5xl font-bold text-foreground mb-2 text-balance">
           {newsletter.title}
         </h1>
