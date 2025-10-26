@@ -2,6 +2,9 @@ import { getNewsletterById, getAllNewsletters } from "@/lib/newsletters"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
+import rehypeRaw from "rehype-raw"
+import rehypeSanitize from "rehype-sanitize"
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -51,72 +54,6 @@ export default async function NewsletterPage({ params }: PageProps) {
   const previousNewsletter = currentIndex < allNewsletters.length - 1 ? allNewsletters[currentIndex + 1] : null
   const nextNewsletter = currentIndex > 0 ? allNewsletters[currentIndex - 1] : null
 
-  // Fallback/simple renderer: convert markdown-like blocks to elements so the
-  // content is visible even if a markdown plugin isn't processing certain
-  // constructs. This handles H1/H2/H3, lists that start with "- ", and
-  // paragraph blocks separated by blank lines.
-  const renderContent = (content: string) => {
-    if (!content) return null
-
-    // Normalize CRLF and split into blocks by two or more newlines
-    const blocks = content.replace(/\r\n/g, "\n").split(/\n{2,}/)
-
-    return blocks.map((block, i) => {
-      const trimmed = block.trim()
-
-      if (trimmed.startsWith("# ")) {
-        return (
-          <h1 key={i} className="text-3xl font-bold text-foreground mt-8 mb-4">
-            {trimmed.replace(/^#\s+/, "")}
-          </h1>
-        )
-      }
-      if (trimmed.startsWith("## ")) {
-        return (
-          <h2 key={i} className="text-2xl font-bold text-foreground mt-6 mb-3">
-            {trimmed.replace(/^##\s+/, "")}
-          </h2>
-        )
-      }
-      if (trimmed.startsWith("### ")) {
-        return (
-          <h3 key={i} className="text-xl font-semibold text-foreground mt-4 mb-2">
-            {trimmed.replace(/^###\s+/, "")}
-          </h3>
-        )
-      }
-
-      // Simple unordered list support: lines starting with "- "
-      const lines = trimmed.split(/\n+/)
-      const isList = lines.every((ln) => ln.trim().startsWith("- ") || ln.trim() === "") && lines.some((ln) => ln.trim().startsWith("- "))
-      if (isList) {
-        const items = lines
-          .map((ln) => ln.trim())
-          .filter((ln) => ln.startsWith("- "))
-          .map((ln) => ln.replace(/^-\s+/, ""))
-        return (
-          <ul key={i} className="ml-6 list-disc space-y-2 text-foreground">
-            {items.map((it, idx) => (
-              <li key={idx}>{it}</li>
-            ))}
-          </ul>
-        )
-      }
-
-      // Default: render as paragraph, preserving inline links/images as raw text
-      return (
-        <p key={i} className="text-lg text-foreground leading-relaxed mb-4">
-          {lines.map((ln, idx) => (
-            <span key={idx}>
-              {ln}
-              {idx < lines.length - 1 ? "\n" : ""}
-            </span>
-          ))}
-        </p>
-      )
-    })
-  }
-
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
       {/* Article Header */}
@@ -127,7 +64,72 @@ export default async function NewsletterPage({ params }: PageProps) {
         <div className="h-px bg-border my-8" />
 
         {/* Content */}
-        <div className="prose prose-invert max-w-none mb-12 space-y-4">{renderContent(newsletter.content)}</div>
+        <div className="prose prose-invert max-w-none mb-12 space-y-4">
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            rehypePlugins={[rehypeRaw, rehypeSanitize]}
+            components={{
+              h1: ({ className, ...props }) => (
+                <h1 className="text-3xl font-bold text-foreground mt-8 mb-4" {...props} />
+              ),
+              h2: ({ className, ...props }) => (
+                <h2 className="text-2xl font-bold text-foreground mt-6 mb-3" {...props} />
+              ),
+              h3: ({ className, ...props }) => (
+                <h3 className="text-xl font-semibold text-foreground mt-4 mb-2" {...props} />
+              ),
+              h4: ({ className, ...props }) => (
+                <h4 className="text-lg font-semibold text-foreground mt-3 mb-2" {...props} />
+              ),
+              p: ({ className, ...props }) => (
+                <p className="text-lg text-foreground leading-relaxed mb-4" {...props} />
+              ),
+              ul: ({ className, ...props }) => (
+                <ul className="ml-6 list-disc space-y-2 text-foreground mb-4" {...props} />
+              ),
+              ol: ({ className, ...props }) => (
+                <ol className="ml-6 list-decimal space-y-2 text-foreground mb-4" {...props} />
+              ),
+              li: ({ className, ...props }) => (
+                <li className="text-lg text-foreground leading-relaxed" {...props} />
+              ),
+              a: ({ className, href, ...props }) => (
+                <a
+                  href={href}
+                  className="text-accent hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  {...props}
+                />
+              ),
+              img: ({ className, src, alt, ...props }) => (
+                <img
+                  src={src}
+                  alt={alt || "Image"}
+                  className="rounded-lg my-4 max-w-full h-auto"
+                  {...props}
+                />
+              ),
+              blockquote: ({ className, ...props }) => (
+                <blockquote className="border-l-4 border-accent pl-4 italic text-secondary my-4" {...props} />
+              ),
+              code: ({ className, ...props }) => (
+                <code className="bg-muted px-1 py-0.5 rounded text-sm font-mono" {...props} />
+              ),
+              pre: ({ className, ...props }) => (
+                <pre className="bg-muted p-4 rounded-lg overflow-x-auto my-4" {...props} />
+              ),
+              strong: ({ className, ...props }) => (
+                <strong className="font-bold" {...props} />
+              ),
+              em: ({ className, ...props }) => (
+                <em className="italic" {...props} />
+              ),
+            }}
+          >
+            {newsletter.content}
+          </ReactMarkdown>
+        </div>
 
         {/* Navigation */}
         <div className="h-px bg-border my-12" />
