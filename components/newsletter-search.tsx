@@ -45,12 +45,20 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
 
       <section className="mt-6" aria-label="Search results">
         {filtered.length > 0 ? (
-          <div className="space-y-4" role="list">
-            {filtered.map((n) => (
-              <div role="listitem" key={n.id}>
-                <NewsletterCard id={n.id} title={n.title} />
-              </div>
-            ))}
+          <div className="space-y-6" role="list">
+            {filtered.map((n) => {
+              // Extract preview from content (first paragraph after title)
+              const getPreview = (content: string) => {
+                const paragraphs = content.split('\n').filter(p => p.trim() && !p.trim().startsWith('#'))
+                return paragraphs[0] || ""
+              }
+              
+              return (
+                <div role="listitem" key={n.id}>
+                  <NewsletterCard id={n.id} title={n.title} preview={getPreview(n.content)} />
+                </div>
+              )
+            })}
           </div>
         ) : (
           <div className="text-center py-16 px-4 border-2 border-dashed border-border rounded-lg">

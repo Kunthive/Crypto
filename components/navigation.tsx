@@ -9,10 +9,10 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   const links = [
-    { href: "/", label: "Home" },
-    { href: "/archive", label: "Archive" },
-    { href: "/intent", label: "Intent" },
-    { href: "/contact", label: "Contact" },
+    { href: "/", label: "Home", icon: "🏠" },
+    { href: "/archive", label: "Archive", icon: "📚" },
+    { href: "/intent", label: "Intent", icon: "🎯" },
+    { href: "/contact", label: "Contact", icon: "💬" },
   ]
 
   const isActive = (href: string) => {
@@ -55,17 +55,18 @@ export default function Navigation() {
             </Link>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex gap-10">
+            <div className="hidden md:flex gap-8">
               {links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative text-sm font-normal transition-all tracking-wide ${
+                  className={`relative flex items-center gap-2 text-sm font-normal transition-all tracking-wide group ${
                     isActive(link.href)
                       ? "text-foreground"
                       : "text-secondary hover:text-foreground"
                   }`}
                 >
+                  <span className="text-lg group-hover:scale-110 transition-transform">{link.icon}</span>
                   <span>{link.label}</span>
                   {isActive(link.href) && (
                     <span className="absolute bottom-0 left-0 w-full h-[1px] bg-foreground" />
@@ -76,7 +77,7 @@ export default function Navigation() {
 
             {/* Mobile Menu Button - Positioned in header */}
             <button 
-              className="md:hidden w-10 h-10 flex items-center justify-center hover:opacity-60 transition-opacity"
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg border-2 border-border hover:border-foreground transition-all bg-gradient-to-b from-background to-background/50 active:translate-y-0.5 active:shadow-sm"
               onClick={() => setIsOpen(!isOpen)} 
               aria-label="Toggle menu"
               aria-expanded={isOpen}
@@ -131,15 +132,16 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`block py-3 text-base font-normal transition-all tracking-wide ${
+                  className={`flex items-center gap-3 py-3 text-base font-normal transition-all tracking-wide group ${
                     isActive(link.href) 
                       ? "text-foreground" 
                       : "text-secondary hover:text-foreground"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
-                  {isActive(link.href) && <span className="inline-block w-1 h-1 bg-foreground rounded-full mr-2" />}
+                  <span className="text-2xl group-hover:scale-110 transition-transform">{link.icon}</span>
                   <span>{link.label}</span>
+                  {isActive(link.href) && <span className="inline-block w-2 h-2 bg-foreground rounded-full ml-auto" />}
                 </Link>
               ))}
             </div>
