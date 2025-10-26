@@ -4,19 +4,19 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* New Color Palette */
-  --palette-bg: #F5F4ED;
-  --palette-card: #FEF3C7;
-  --palette-text: #121212;
-  --palette-text-secondary: rgba(18, 18, 18, 0.7);
-  --palette-primary: #C6613F;
-  --palette-primary-hover: #A54E2E;
-  --palette-secondary: #D97706;
-  --palette-error: #E81123;
-  --palette-warning: #D97706;
-  --palette-success: #4CAF50;
-  --palette-highlight: #FFFFCC;
-  --palette-divider: rgba(18,18,18,0.1);
+  /* Professional Color Palette */
+  --palette-bg: #FAFAFA;
+  --palette-card: #FFFFFF;
+  --palette-text: #1F2937;
+  --palette-text-secondary: rgba(31, 41, 55, 0.7);
+  --palette-primary: #2563EB;
+  --palette-primary-hover: #1D4ED8;
+  --palette-secondary: #6B7280;
+  --palette-error: #DC2626;
+  --palette-warning: #F59E0B;
+  --palette-success: #10B981;
+  --palette-highlight: #EFF6FF;
+  --palette-divider: rgba(31, 41, 55, 0.1);
 
   --background: var(--palette-bg);
   --foreground: var(--palette-text);
@@ -49,32 +49,32 @@
 }
 
 .dark {
-  --background: #121212;
-  --foreground: #F5F4ED;
-  --card: #1a1a1a;
-  --card-foreground: #F5F4ED;
-  --popover: #1a1a1a;
-  --popover-foreground: #F5F4ED;
+  --background: #111827;
+  --foreground: #F9FAFB;
+  --card: #1F2937;
+  --card-foreground: #F9FAFB;
+  --popover: #1F2937;
+  --popover-foreground: #F9FAFB;
   --primary: var(--palette-primary);
   --primary-foreground: #FFFFFF;
   --secondary: var(--palette-secondary);
   --secondary-foreground: #FFFFFF;
-  --muted: #2b2b2b;
-  --muted-foreground: #F5F4ED;
+  --muted: #374151;
+  --muted-foreground: #F9FAFB;
   --accent: var(--palette-primary);
   --accent-foreground: #FFFFFF;
   --destructive: var(--palette-error);
   --destructive-foreground: #FFFFFF;
-  --border: rgba(255,255,255,0.06);
-  --input: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.08);
+  --input: rgba(255,255,255,0.05);
   --ring: var(--palette-primary);
-  --sidebar: #121212;
-  --sidebar-foreground: #F5F4ED;
+  --sidebar: #111827;
+  --sidebar-foreground: #F9FAFB;
   --sidebar-primary: var(--palette-primary);
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #2b2b2b;
-  --sidebar-accent-foreground: #F5F4ED;
-  --sidebar-border: rgba(255,255,255,0.06);
+  --sidebar-accent: #374151;
+  --sidebar-accent-foreground: #F9FAFB;
+  --sidebar-border: rgba(255,255,255,0.08);
   --sidebar-ring: var(--palette-primary);
 }
 
@@ -168,40 +168,8 @@ pre code {
     scroll-behavior: smooth;
   }
   
-  /* Ensure floating button doesn't overlap content */
-  body {
-    padding-bottom: 0;
-  }
-  
   /* Better mobile navigation */
   nav {
     padding: 0 1rem;
-  }
-  
-  /* Improved mobile menu animations */
-  .mobile-menu-enter {
-    animation: slideInRight 0.3s ease-out;
-  }
-  
-  .mobile-menu-exit {
-    animation: slideOutRight 0.3s ease-in;
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideOutRight {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
   }
 }

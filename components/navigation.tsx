@@ -67,16 +67,35 @@ export default function Navigation() {
               ))}
             </div>
 
-            {/* Floating Mobile Menu Button */}
+            {/* Mobile Menu Button - Positioned in header */}
             <button 
-              className="md:hidden fixed bottom-8 right-8 z-40 w-16 h-16 rounded-full bg-primary text-white shadow-lg hover:bg-primary-hover transition-all duration-200 flex items-center justify-center group"
+              className="md:hidden w-10 h-10 rounded-lg flex items-center justify-center hover:bg-muted transition-colors"
               onClick={() => setIsOpen(!isOpen)} 
               aria-label="Toggle menu"
               aria-expanded={isOpen}
             >
-              <span className="text-2xl transition-transform duration-200 group-hover:scale-110">
-                {isOpen ? "✕" : "☰"}
-              </span>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
             </button>
           </div>
         </div>
@@ -92,24 +111,24 @@ export default function Navigation() {
 
       {/* Mobile Menu Panel */}
       <div 
-        className={`fixed top-0 right-0 w-80 max-w-[85vw] h-full bg-card border-l border-border z-40 transform transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 right-0 w-80 max-w-[90vw] h-full bg-card border-l border-border z-40 shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
-          <div className="p-6 border-b border-border">
-            <h2 className="text-xl font-bold text-foreground">Menu</h2>
+          <div className="p-6 border-b border-border bg-background">
+            <h2 className="text-xl font-bold text-foreground">Navigation</h2>
           </div>
           
-          <nav className="flex-1 overflow-y-auto p-4">
-            <div className="space-y-2">
+          <nav className="flex-1 overflow-y-auto p-6">
+            <div className="space-y-3">
               {links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`block py-3 px-4 rounded-lg text-base font-medium transition-all ${
+                  className={`block py-4 px-4 rounded-lg text-base font-medium transition-all ${
                     isActive(link.href) 
-                      ? "text-primary bg-highlight" 
+                      ? "text-primary bg-highlight border-l-4 border-primary" 
                       : "text-foreground hover:bg-muted"
                   }`}
                   onClick={() => setIsOpen(false)}
@@ -120,9 +139,9 @@ export default function Navigation() {
             </div>
           </nav>
 
-          <div className="p-6 border-t border-border">
+          <div className="p-6 border-t border-border bg-background">
             <p className="text-sm text-secondary/70 text-center">
-              Milkroad Pro Archive
+              © 2024 Milkroad Pro Archive
             </p>
           </div>
         </div>
