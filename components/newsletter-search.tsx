@@ -15,7 +15,11 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
     const q = query.trim().toLowerCase()
     if (!q) return initialNewsletters
     return initialNewsletters.filter((n) => {
-      return n.title.toLowerCase().includes(q) || n.content.toLowerCase().includes(q)
+      return (
+        n.title.toLowerCase().includes(q) || 
+        n.content.toLowerCase().includes(q) ||
+        (n.date && n.date.toLowerCase().includes(q))
+      )
     })
   }, [query, initialNewsletters])
 
@@ -29,7 +33,7 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
           id="newsletter-search"
           type="search"
           inputMode="search"
-          placeholder="Search reports..."
+          placeholder="Search by title, content, or date..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           aria-label="Search reports"
@@ -55,7 +59,7 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
               
               return (
                 <div role="listitem" key={n.id}>
-                  <NewsletterCard id={n.id} title={n.title} preview={getPreview(n.content)} />
+                  <NewsletterCard id={n.id} title={n.title} preview={getPreview(n.content)} date={n.date} />
                 </div>
               )
             })}

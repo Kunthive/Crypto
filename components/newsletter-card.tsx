@@ -7,9 +7,10 @@ interface NewsletterCardProps {
   id: string
   title: string
   preview?: string
+  date?: string
 }
 
-export default function NewsletterCard({ id, title, preview }: NewsletterCardProps) {
+export default function NewsletterCard({ id, title, preview, date }: NewsletterCardProps) {
   const [isPressed, setIsPressed] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   
@@ -61,6 +62,19 @@ export default function NewsletterCard({ id, title, preview }: NewsletterCardPro
           
           {/* Content */}
           <div className="relative p-6 sm:p-8 overflow-hidden">
+            {/* Date */}
+            {date && (
+              <div 
+                className="text-xs font-medium text-secondary/60 mb-2 transition-all"
+                style={{
+                  transform: isPressed ? 'translateY(2px)' : 'translateY(0)',
+                  transition: 'transform 0.2s ease'
+                }}
+              >
+                {date}
+              </div>
+            )}
+            
             {/* Title */}
             <h3 
               id={`newsletter-${id}`} 
@@ -75,9 +89,9 @@ export default function NewsletterCard({ id, title, preview }: NewsletterCardPro
             
             {/* Preview text with fade out */}
             {preview && (
-              <div className="relative h-24 overflow-hidden">
+              <div className="relative h-28 overflow-hidden">
                 <p 
-                  className="text-sm text-secondary/80 leading-relaxed line-clamp-4 transition-all"
+                  className="text-sm text-secondary/80 leading-relaxed line-clamp-5 transition-all"
                   style={{
                     transform: isPressed ? 'translateY(2px)' : 'translateY(0)',
                     transition: 'transform 0.2s ease'
@@ -87,7 +101,7 @@ export default function NewsletterCard({ id, title, preview }: NewsletterCardPro
                 </p>
                 {/* Enhanced fade effect at bottom */}
                 <div 
-                  className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-background pointer-events-none"
+                  className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-b from-transparent to-background pointer-events-none"
                   style={{
                     background: 'linear-gradient(to bottom, transparent, var(--background))'
                   }}
