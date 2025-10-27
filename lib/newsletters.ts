@@ -50,20 +50,31 @@ export function loadNewsletters(): Newsletter[] {
   }
 
   const newsletters: Newsletter[] = files
-    .filter((f) => f.endsWith(".md") || f.endsWith(".markdown"))
-    .map((file) => {
-      const full = path.join(NEWSLETTERS_DIR, file)
-      const raw = fs.readFileSync(full, "utf8")
-      const id = file.replace(/\.md$|\.markdown$/i, "")
-      const title = parseTitleFromContent(raw, id)
-      const date = parseDateFromContent(raw)
-      return {
-        id,
-        title,
-        content: raw,
-        date,
-      } as Newsletter
+    .filter((f) => {
+      // Filter out the collection/index file
+      const isMarkdown = f.endsWith(".md") || f.endsWith(".markdown")
+      return isMarkdown && f !== "MILK.md"
     })
+    .map((file) => {
+      try {
+        const full = path.join(NEWSLETTERS_DIR, file)
+        const raw = fs.readFileSync(full, "utf8")
+        const id = file.replace(/\.md$|\.markdown$/i, "")
+        const title = parseTitleFromContent(raw, id)
+        const date = parseDateFromContent(raw)
+        return {
+          id,
+          title,
+          content: raw,
+          date,
+        } as Newsletter
+      } catch (error) {
+        // Log error but continue processing other files
+        console.error(`Error loading newsletter file: ${file}`, error)
+        return null
+      }
+    })
+    .filter((n) => n !== null) as Newsletter[]
 
   // Sort by date if available, otherwise by filename (newest first)
   newsletters.sort((a, b) => {
