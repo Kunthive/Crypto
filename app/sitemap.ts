@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Enhanced newsletter entries with better metadata
   const newsletterEntries = newsletters.map((newsletter) => ({
-    url: `${baseUrl}/newsletter/${encodeURIComponent(newsletter.id)}`,
+    url: `${baseUrl}/newsletter/${newsletter.id}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.85, // High priority for content pages

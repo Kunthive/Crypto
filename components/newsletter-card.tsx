@@ -27,7 +27,7 @@ export default function NewsletterCard({ id, title, preview, date }: NewsletterC
   return (
     <article aria-labelledby={`newsletter-${id}`} className="rounded-lg">
       <Link 
-        href={`/newsletter/${encodeURIComponent(id)}`} 
+        href={`/newsletter/${id}`} 
         className="block focus:outline-none focus:ring-2 focus:ring-foreground rounded-lg" 
         aria-label={`Open report ${title}`}
         onMouseDown={() => setIsPressed(true)}

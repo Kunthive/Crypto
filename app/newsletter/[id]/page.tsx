@@ -13,20 +13,17 @@ interface PageProps {
 }
 
 export const dynamic = 'force-static'
-export const dynamicParams = false
 
 export async function generateStaticParams() {
   const newsletters = getAllNewsletters()
   return newsletters.map((newsletter) => ({
-    id: encodeURIComponent(newsletter.id),
+    id: newsletter.id,
   }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params
-  // Decode the URL-encoded ID to match the original filename
-  const decodedId = decodeURIComponent(id)
-  const newsletter = getNewsletterById(decodedId)
+  const newsletter = getNewsletterById(id)
 
   if (!newsletter) {
     return {
@@ -34,7 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
-  const url = `${SEO_CONFIG.siteUrl}/newsletter/${id}`
+  const url = `${SEO_CONFIG.siteUrl}/newsletter/${encodeURIComponent(id)}`
   const description = newsletter.content.substring(0, 155) + "..."
   
   return generateSEOMetadata({
@@ -54,16 +51,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function NewsletterPage({ params }: PageProps) {
   const { id } = await params
-  // Decode the URL-encoded ID to match the original filename
-  const decodedId = decodeURIComponent(id)
-  const newsletter = getNewsletterById(decodedId)
+  const newsletter = getNewsletterById(id)
 
   if (!newsletter) {
     notFound()
   }
 
   const allNewsletters = getAllNewsletters()
-  const currentIndex = allNewsletters.findIndex((n) => n.id === decodedId)
+  const currentIndex = allNewsletters.findIndex((n) => n.id === id)
   const previousNewsletter = currentIndex < allNewsletters.length - 1 ? allNewsletters[currentIndex + 1] : null
   const nextNewsletter = currentIndex > 0 ? allNewsletters[currentIndex - 1] : null
 
@@ -86,7 +81,7 @@ export default async function NewsletterPage({ params }: PageProps) {
     })
     .join('\n')
 
-  const url = `${SEO_CONFIG.siteUrl}/newsletter/${id}`
+  const url = `${SEO_CONFIG.siteUrl}/newsletter/${encodeURIComponent(id)}`
   const description = newsletter.content.substring(0, 155)
   
   const articleStructuredData = generateArticleStructuredData({
@@ -220,7 +215,7 @@ export default async function NewsletterPage({ params }: PageProps) {
         <div className="h-px bg-border my-12" />
         <div className="flex gap-4 justify-between">
           {previousNewsletter ? (
-            <Link href={`/newsletter/${encodeURIComponent(previousNewsletter.id)}`}>
+            <Link href={`/newsletter/${previousNewsletter.id}`}>
               <button className="flex items-center gap-2 px-6 py-3 border border-border rounded-lg hover:bg-muted transition-colors text-foreground font-medium">
                 ← Previous Report
               </button>
@@ -230,7 +225,7 @@ export default async function NewsletterPage({ params }: PageProps) {
           )}
 
           {nextNewsletter ? (
-            <Link href={`/newsletter/${encodeURIComponent(nextNewsletter.id)}`}>
+            <Link href={`/newsletter/${nextNewsletter.id}`}>
               <button className="flex items-center gap-2 px-6 py-3 border border-border rounded-lg hover:bg-muted transition-colors text-foreground font-medium">
                 Next Report →
               </button>
