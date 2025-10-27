@@ -6,6 +6,11 @@ const nextConfig = {
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   
+  // Ensure public folder is included in build
+  outputFileTracingIncludes: {
+    '/newsletter/*': ['./public/newsletters/**/*'],
+  },
+  
   // Security headers for SEO trust signals
   async headers() {
     return [
