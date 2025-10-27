@@ -6,23 +6,11 @@ import { useState } from "react"
 interface NewsletterCardProps {
   id: string
   title: string
-  preview?: string
-  date?: string
 }
 
-export default function NewsletterCard({ id, title, preview, date }: NewsletterCardProps) {
+export default function NewsletterCard({ id, title }: NewsletterCardProps) {
   const [isPressed, setIsPressed] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
-  
-  // Extract first few sentences for preview
-  const getPreview = () => {
-    if (preview) {
-      // Get first 200 characters
-      const truncated = preview.substring(0, 200).trim()
-      return truncated.length < preview.length ? truncated + "..." : truncated
-    }
-    return ""
-  }
 
   return (
     <article aria-labelledby={`newsletter-${id}`} className="rounded-lg">
@@ -60,28 +48,12 @@ export default function NewsletterCard({ id, title, preview, date }: NewsletterC
             <div className="absolute -inset-0.5 bg-foreground/10 rounded-lg blur-sm opacity-50 animate-pulse pointer-events-none" />
           )}
           
-          {/* Content */}
-          <div className="relative p-6 sm:p-8 overflow-hidden">
-            {/* Date */}
-            {date && (
-              <div 
-                className="inline-flex items-center px-2 py-1 mb-3 bg-foreground/5 rounded-md transition-all"
-                style={{
-                  transform: isPressed ? 'translateY(2px)' : 'translateY(0)',
-                  transition: 'transform 0.2s ease'
-                }}
-              >
-                <svg className="w-3 h-3 mr-1.5 text-secondary/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                <span className="text-xs font-medium text-secondary/70">{date}</span>
-              </div>
-            )}
-            
+          {/* Content - Only Title */}
+          <div className="relative p-6 sm:p-8 py-7 sm:py-9">
             {/* Title */}
             <h3 
               id={`newsletter-${id}`} 
-              className="text-lg sm:text-xl font-semibold text-foreground mb-3 transition-all"
+              className="text-lg sm:text-xl font-semibold text-foreground transition-all"
               style={{
                 transform: isPressed ? 'translateY(2px)' : 'translateY(0)',
                 transition: 'transform 0.2s ease'
@@ -89,28 +61,6 @@ export default function NewsletterCard({ id, title, preview, date }: NewsletterC
             >
               {title}
             </h3>
-            
-            {/* Preview text with fade out */}
-            {preview && (
-              <div className="relative h-28 overflow-hidden">
-                <p 
-                  className="text-sm text-secondary/80 leading-relaxed line-clamp-5 transition-all"
-                  style={{
-                    transform: isPressed ? 'translateY(2px)' : 'translateY(0)',
-                    transition: 'transform 0.2s ease'
-                  }}
-                >
-                  {getPreview()}
-                </p>
-                {/* Enhanced fade effect at bottom */}
-                <div 
-                  className="absolute bottom-0 left-0 right-0 h-14 bg-gradient-to-b from-transparent to-background pointer-events-none"
-                  style={{
-                    background: 'linear-gradient(to bottom, transparent, var(--background))'
-                  }}
-                />
-              </div>
-            )}
             
             {/* Read more indicator */}
             <div 

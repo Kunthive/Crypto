@@ -20,7 +20,7 @@ export default function IntentPage() {
         <div className="space-y-6 text-base sm:text-lg leading-relaxed text-foreground">
           <p>
             Milkroad Pro provides valuable insights into the cryptocurrency market, but access requires a paid
-            subscription. During my week-long Pro membership, I collected these reports and decided to make them
+            subscription. During my free trial period, I collected these reports and decided to make them
             publicly available.
           </p>
 
@@ -29,12 +29,18 @@ export default function IntentPage() {
             I hope to help others interested in cryptocurrencies stay informed and make better decisions.
           </p>
 
-          <p>
-            This archive contains reports that were previously behind a paywall. All content is originally from Milkroad
-            Pro and is shared here for educational purposes.
-          </p>
-
           <div className="bg-card p-6 rounded-lg border border-border mt-8">
+            <h2 className="text-xl font-semibold text-foreground mb-3">About This Archive</h2>
+            <p className="text-sm sm:text-base text-secondary/80 leading-relaxed">
+              The reports which are present in this website are only a few of them from the initial stage to the point where I got a membership free trial. After that the reports are not being available since I don't have access to the Milkroad Pro. If anyone of you has access to Pro reports and would like to share them and update it regularly to encourage open source and make sure everyone accesses them, please contact me at{" "}
+              <a href="mailto:8harath.k@gmail.com" className="text-accent hover:underline">
+                8harath.k@gmail.com
+              </a>
+              .
+            </p>
+          </div>
+
+          <div className="bg-card p-6 rounded-lg border border-border mt-6">
             <p className="text-sm text-secondary/70">
               <strong>Disclaimer:</strong> This archive is provided for educational purposes only. All content is the
               intellectual property of Milkroad Pro. If you find value in these reports, please consider supporting
