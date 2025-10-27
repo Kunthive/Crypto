@@ -65,13 +65,16 @@ export default function NewsletterCard({ id, title, preview, date }: NewsletterC
             {/* Date */}
             {date && (
               <div 
-                className="text-xs font-medium text-secondary/60 mb-2 transition-all"
+                className="inline-flex items-center px-2 py-1 mb-3 bg-foreground/5 rounded-md transition-all"
                 style={{
                   transform: isPressed ? 'translateY(2px)' : 'translateY(0)',
                   transition: 'transform 0.2s ease'
                 }}
               >
-                {date}
+                <svg className="w-3 h-3 mr-1.5 text-secondary/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span className="text-xs font-medium text-secondary/70">{date}</span>
               </div>
             )}
             
