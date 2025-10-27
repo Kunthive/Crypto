@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   compress: true,
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
@@ -47,9 +46,6 @@ const nextConfig = {
     optimizePackageImports: ["lucide-react", "@radix-ui/react-accordion"],
   },
 
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
