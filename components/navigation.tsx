@@ -9,10 +9,10 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   const links = [
-    { href: "/", label: "Home", icon: "🏠" },
-    { href: "/archive", label: "Archive", icon: "📚" },
-    { href: "/intent", label: "Intent", icon: "🎯" },
-    { href: "/contact", label: "Contact", icon: "💬" },
+    { href: "/", label: "Home", icon: "🏠", description: "Main page" },
+    { href: "/archive", label: "Archive", icon: "📚", description: "Browse reports" },
+    { href: "/intent", label: "Intent", icon: "🎯", description: "Learn more" },
+    { href: "/contact", label: "Contact", icon: "💬", description: "Get in touch" },
   ]
 
   const isActive = (href: string) => {
@@ -44,9 +44,13 @@ export default function Navigation() {
           <div className="flex justify-between items-center h-20 sm:h-24">
             <Link 
               href="/" 
-              className="text-xl sm:text-2xl font-semibold tracking-tight text-foreground transition-all hover:opacity-70"
+              className="flex items-center gap-2 text-xl sm:text-2xl font-semibold tracking-tight text-foreground transition-all hover:opacity-70 group"
               onClick={() => setIsOpen(false)}
             >
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-foreground/10 to-transparent blur-lg group-hover:from-foreground/20 transition-all" />
+                <span className="relative inline-block text-2xl sm:text-3xl">📰</span>
+              </div>
               <span className="inline-block">
                 <span className="font-light">Milkroad</span>
                 <span className="font-normal ml-1">Pro</span>
@@ -55,21 +59,24 @@ export default function Navigation() {
             </Link>
 
             {/* Desktop Menu */}
-            <div className="hidden md:flex gap-8">
+            <div className="hidden md:flex gap-2">
               {links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative flex items-center gap-2 text-sm font-normal transition-all tracking-wide group ${
+                  className={`relative flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-all tracking-wide group ${
                     isActive(link.href)
-                      ? "text-foreground"
-                      : "text-secondary hover:text-foreground"
+                      ? "bg-foreground/10 text-foreground shadow-sm"
+                      : "text-secondary hover:text-foreground hover:bg-foreground/5"
                   }`}
+                  title={link.description}
                 >
-                  <span className="text-lg group-hover:scale-110 transition-transform">{link.icon}</span>
-                  <span>{link.label}</span>
+                  <span className="text-xl group-hover:scale-110 transition-transform">
+                    {link.icon}
+                  </span>
+                  <span className="text-xs font-medium">{link.label}</span>
                   {isActive(link.href) && (
-                    <span className="absolute bottom-0 left-0 w-full h-[1px] bg-foreground" />
+                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-foreground rounded-full" />
                   )}
                 </Link>
               ))}
@@ -77,7 +84,7 @@ export default function Navigation() {
 
             {/* Mobile Menu Button - Positioned in header */}
             <button 
-              className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg border-2 border-border hover:border-foreground transition-all bg-gradient-to-b from-background to-background/50 active:translate-y-0.5 active:shadow-sm"
+              className="md:hidden w-12 h-12 flex items-center justify-center rounded-lg border-2 border-foreground/30 transition-all bg-gradient-to-b from-background to-background/50 hover:border-foreground/50 active:translate-y-0.5 active:shadow-sm shadow-sm hover:shadow-md"
               onClick={() => setIsOpen(!isOpen)} 
               aria-label="Toggle menu"
               aria-expanded={isOpen}
@@ -85,7 +92,7 @@ export default function Navigation() {
               <svg
                 className="w-7 h-7 stroke-foreground"
                 fill="none"
-                strokeWidth={1.5}
+                strokeWidth={2}
                 viewBox="0 0 24 24"
               >
                 {isOpen ? (
@@ -123,7 +130,16 @@ export default function Navigation() {
       >
         <div className="flex flex-col h-full border-l border-border">
           <div className="p-8 border-b border-border">
-            <h2 className="text-lg font-light tracking-wide text-foreground">Menu</h2>
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-foreground/10 to-transparent blur-lg" />
+                <span className="relative inline-block text-3xl">📰</span>
+              </div>
+              <div>
+                <h2 className="text-lg font-semibold tracking-wide text-foreground">Milkroad Pro</h2>
+                <p className="text-xs text-secondary/60">Archive Navigation</p>
+              </div>
+            </div>
           </div>
           
           <nav className="flex-1 overflow-y-auto px-6 py-8">
@@ -132,16 +148,21 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex items-center gap-3 py-3 text-base font-normal transition-all tracking-wide group ${
+                  className={`flex items-center gap-4 py-4 px-4 rounded-lg text-base font-normal transition-all tracking-wide group ${
                     isActive(link.href) 
-                      ? "text-foreground" 
-                      : "text-secondary hover:text-foreground"
+                      ? "text-foreground bg-foreground/10" 
+                      : "text-secondary hover:text-foreground hover:bg-foreground/5"
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
                   <span className="text-2xl group-hover:scale-110 transition-transform">{link.icon}</span>
-                  <span>{link.label}</span>
-                  {isActive(link.href) && <span className="inline-block w-2 h-2 bg-foreground rounded-full ml-auto" />}
+                  <div className="flex-1">
+                    <span className="block">{link.label}</span>
+                    <span className="text-xs text-secondary/60">{link.description}</span>
+                  </div>
+                  {isActive(link.href) && (
+                    <span className="inline-block w-2 h-2 bg-foreground rounded-full" />
+                  )}
                 </Link>
               ))}
             </div>

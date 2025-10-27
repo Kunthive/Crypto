@@ -11,6 +11,7 @@ interface NewsletterCardProps {
 
 export default function NewsletterCard({ id, title, preview }: NewsletterCardProps) {
   const [isPressed, setIsPressed] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
   
   // Extract first few sentences for preview
   const getPreview = () => {
@@ -30,53 +31,82 @@ export default function NewsletterCard({ id, title, preview }: NewsletterCardPro
         aria-label={`Open report ${title}`}
         onMouseDown={() => setIsPressed(true)}
         onMouseUp={() => setIsPressed(false)}
-        onMouseLeave={() => setIsPressed(false)}
+        onMouseLeave={() => {
+          setIsPressed(false)
+          setIsHovered(false)
+        }}
+        onMouseEnter={() => setIsHovered(true)}
       >
+        {/* Retro 3D raised card effect */}
         <div 
-          className={`relative p-6 sm:p-8 border-2 border-border rounded-lg hover:border-foreground transition-all bg-gradient-to-b from-background to-background/50 ${
-            isPressed ? 'translate-y-1 shadow-sm' : 'shadow-lg hover:shadow-xl'
+          className={`relative bg-gradient-to-b from-background to-background/50 rounded-lg transition-all duration-300 ${
+            isPressed 
+              ? 'translate-y-2 shadow-inner border-2 border-foreground/20' 
+              : 'shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.15)] border-2 border-foreground/40 hover:border-foreground'
           }`}
           style={{
-            transition: 'all 0.15s cubic-bezier(0.4, 0, 0.2, 1)'
+            transform: isPressed ? 'translateY(4px)' : isHovered ? 'translateY(-2px)' : 'translateY(0px)',
+            transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)'
           }}
         >
-          {/* Retro 3D effect border */}
-          <div 
-            className={`absolute inset-0 rounded-lg border-2 transition-all ${
-              isPressed 
-                ? 'border-t-border/50 border-r-border/30 border-b-border border-l-border/50' 
-                : 'border-t-border/20 border-r-border border-b-border/20 border-l-border'
-            }`}
-            style={{
-              pointerEvents: 'none'
-            }}
-          />
+          {/* Inner highlight for 3D effect */}
+          {!isPressed && (
+            <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-foreground/5 to-transparent rounded-t-lg pointer-events-none opacity-50" />
+          )}
           
-          <div className="relative overflow-hidden">
+          {/* Content */}
+          <div className="relative p-6 sm:p-8 overflow-hidden">
             {/* Title */}
-            <h3 id={`newsletter-${id}`} className="text-lg sm:text-xl font-semibold text-foreground mb-3 transition-colors">
+            <h3 
+              id={`newsletter-${id}`} 
+              className="text-lg sm:text-xl font-semibold text-foreground mb-3 transition-all"
+              style={{
+                transform: isPressed ? 'translateY(2px)' : 'translateY(0)',
+                transition: 'transform 0.2s ease'
+              }}
+            >
               {title}
             </h3>
             
             {/* Preview text with fade out */}
             {preview && (
-              <div className="relative">
-                <p className="text-sm text-secondary/80 leading-relaxed mb-4 line-clamp-3">
+              <div className="relative h-24 overflow-hidden">
+                <p 
+                  className="text-sm text-secondary/80 leading-relaxed line-clamp-4 transition-all"
+                  style={{
+                    transform: isPressed ? 'translateY(2px)' : 'translateY(0)',
+                    transition: 'transform 0.2s ease'
+                  }}
+                >
                   {getPreview()}
                 </p>
-                {/* Fade effect at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+                {/* Enhanced fade effect at bottom */}
+                <div 
+                  className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-b from-transparent to-background pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(to bottom, transparent, var(--background))'
+                  }}
+                />
               </div>
             )}
             
             {/* Read more indicator */}
-            <div className="flex items-center gap-2 text-sm font-medium text-foreground opacity-70">
+            <div 
+              className="flex items-center gap-2 text-sm font-medium text-foreground opacity-70 mt-4 transition-all"
+              style={{
+                transform: isPressed ? 'translateX(2px) translateY(2px)' : 'translateX(0) translateY(0)',
+                transition: 'transform 0.2s ease'
+              }}
+            >
               <span>Read full report</span>
               <svg 
-                className="w-4 h-4 inline-block transition-transform group-hover:translate-x-1" 
+                className="w-4 h-4 inline-block transition-transform duration-200" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
+                style={{
+                  transform: isHovered ? 'translateX(2px)' : 'translateX(0)'
+                }}
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
