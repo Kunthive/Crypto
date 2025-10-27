@@ -42,7 +42,7 @@ export default function NewsletterCard({ id, title, preview }: NewsletterCardPro
           className={`relative bg-gradient-to-b from-background to-background/50 rounded-lg transition-all duration-300 ${
             isPressed 
               ? 'translate-y-2 shadow-inner border-2 border-foreground/20' 
-              : 'shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.15)] border-2 border-foreground/40 hover:border-foreground'
+              : 'shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.15)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.15)] border-2 border-foreground/40 hover:border-foreground'
           }`}
           style={{
             transform: isPressed ? 'translateY(4px)' : isHovered ? 'translateY(-2px)' : 'translateY(0px)',
@@ -52,6 +52,11 @@ export default function NewsletterCard({ id, title, preview }: NewsletterCardPro
           {/* Inner highlight for 3D effect */}
           {!isPressed && (
             <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-foreground/5 to-transparent rounded-t-lg pointer-events-none opacity-50" />
+          )}
+          
+          {/* Subtle glow on hover */}
+          {isHovered && !isPressed && (
+            <div className="absolute -inset-0.5 bg-foreground/10 rounded-lg blur-sm opacity-50 animate-pulse pointer-events-none" />
           )}
           
           {/* Content */}
