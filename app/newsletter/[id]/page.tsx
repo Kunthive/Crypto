@@ -12,6 +12,9 @@ interface PageProps {
   params: Promise<{ id: string }>
 }
 
+export const dynamic = 'force-static'
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   const newsletters = getAllNewsletters()
   return newsletters.map((newsletter) => ({

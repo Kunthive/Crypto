@@ -1,6 +1,8 @@
 import { generateSEOMetadata, SEO_CONFIG, SEO_KEYWORDS } from "@/lib/seo"
 import type { Metadata } from "next"
 
+export const dynamic = 'force-static'
+
 export const metadata: Metadata = generateSEOMetadata({
   title: "About This Archive - Our Intent and Purpose",
   description:

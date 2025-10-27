@@ -9,10 +9,10 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
 
   const links = [
-    { href: "/", label: "Home", icon: "🏠", description: "Main page" },
-    { href: "/archive", label: "Archive", icon: "📚", description: "Browse reports" },
-    { href: "/intent", label: "Intent", icon: "🎯", description: "Learn more" },
-    { href: "/contact", label: "Contact", icon: "💬", description: "Get in touch" },
+    { href: "/", label: "Home", description: "Main page" },
+    { href: "/archive", label: "Archive", description: "Browse reports" },
+    { href: "/intent", label: "Intent", description: "Learn more" },
+    { href: "/contact", label: "Contact", description: "Get in touch" },
   ]
 
   const isActive = (href: string) => {
@@ -47,10 +47,6 @@ export default function Navigation() {
               className="flex items-center gap-2 text-xl sm:text-2xl font-semibold tracking-tight text-foreground transition-all hover:opacity-70 group"
               onClick={() => setIsOpen(false)}
             >
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-foreground/10 to-transparent blur-lg group-hover:from-foreground/20 transition-all" />
-                <span className="relative inline-block text-2xl sm:text-3xl">📰</span>
-              </div>
               <span className="inline-block">
                 <span className="font-light">Milkroad</span>
                 <span className="font-normal ml-1">Pro</span>
@@ -64,17 +60,14 @@ export default function Navigation() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative flex flex-col items-center gap-1 px-4 py-2 rounded-lg transition-all tracking-wide group ${
+                  className={`relative flex items-center gap-2 px-4 py-2 rounded-lg transition-all tracking-wide group ${
                     isActive(link.href)
                       ? "bg-foreground/10 text-foreground shadow-sm"
                       : "text-secondary hover:text-foreground hover:bg-foreground/5"
                   }`}
                   title={link.description}
                 >
-                  <span className="text-xl group-hover:scale-110 transition-transform">
-                    {link.icon}
-                  </span>
-                  <span className="text-xs font-medium">{link.label}</span>
+                  <span className="text-sm font-medium">{link.label}</span>
                   {isActive(link.href) && (
                     <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-foreground rounded-full" />
                   )}
@@ -131,10 +124,6 @@ export default function Navigation() {
         <div className="flex flex-col h-full border-l border-border">
           <div className="p-8 border-b border-border">
             <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-foreground/10 to-transparent blur-lg" />
-                <span className="relative inline-block text-3xl">📰</span>
-              </div>
               <div>
                 <h2 className="text-lg font-semibold tracking-wide text-foreground">Milkroad Pro</h2>
                 <p className="text-xs text-secondary/60">Archive Navigation</p>
@@ -155,7 +144,6 @@ export default function Navigation() {
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
-                  <span className="text-2xl group-hover:scale-110 transition-transform">{link.icon}</span>
                   <div className="flex-1">
                     <span className="block">{link.label}</span>
                     <span className="text-xs text-secondary/60">{link.description}</span>

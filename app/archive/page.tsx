@@ -3,6 +3,8 @@ import { getAllNewsletters } from "@/lib/newsletters"
 import { generateSEOMetadata, generateCollectionPageStructuredData, SEO_KEYWORDS, SEO_CONFIG } from "@/lib/seo"
 import type { Metadata } from "next"
 
+export const dynamic = 'force-static'
+
 export const metadata: Metadata = generateSEOMetadata({
   title: "Complete Archive - All Milkroad Pro Reports",
   description:

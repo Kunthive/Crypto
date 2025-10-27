@@ -2,6 +2,8 @@ import ContactClientPage from "./contact-client-page"
 import { generateSEOMetadata, SEO_CONFIG, SEO_KEYWORDS } from "@/lib/seo"
 import type { Metadata } from "next"
 
+export const dynamic = 'force-static'
+
 export const metadata: Metadata = generateSEOMetadata({
   title: "Contact Us - Milkroad Pro Archive",
   description: "Get in touch with questions, feedback, or inquiries about the Milkroad Pro Archive. We welcome your input to improve the archive experience.",

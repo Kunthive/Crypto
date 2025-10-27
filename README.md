@@ -4,13 +4,13 @@ A professional, minimalist archive for Milkroad Pro cryptocurrency newsletters. 
 
 ## Features
 
-✨ **Clean Design** - Monochromatic black/white/grey aesthetic  
-🔍 **Full-Text Search** - Search newsletters by title and content  
-📱 **Responsive** - Works perfectly on desktop, tablet, and mobile  
-📧 **Contact Form** - EmailJS integration for inquiries  
-⚡ **Fast** - Static site generation for optimal performance  
-🔗 **SEO Optimized** - Sitemap, meta tags, and semantic HTML  
-📝 **Easy Content Management** - Just add Markdown files  
+- **Clean Design** - Monochromatic black/white/grey aesthetic  
+- **Full-Text Search** - Search newsletters by title and content  
+- **Responsive** - Works perfectly on desktop, tablet, and mobile  
+- **Contact Form** - EmailJS integration for inquiries  
+- **Fast** - Static site generation for optimal performance  
+- **SEO Optimized** - Sitemap, meta tags, and semantic HTML  
+- **Easy Content Management** - Just add Markdown files  
 
 ## Quick Start
 
