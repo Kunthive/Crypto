@@ -6,9 +6,10 @@ import { useState } from "react"
 interface NewsletterCardProps {
   id: string
   title: string
+  date?: string
 }
 
-export default function NewsletterCard({ id, title }: NewsletterCardProps) {
+export default function NewsletterCard({ id, title, date }: NewsletterCardProps) {
   const [isPressed, setIsPressed] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
 
@@ -26,16 +27,22 @@ export default function NewsletterCard({ id, title }: NewsletterCardProps) {
         }}
         onMouseEnter={() => setIsHovered(true)}
       >
-        {/* Retro 3D raised card effect */}
+        {/* Retro 3D raised card effect with mechanical keyboard feel */}
         <div 
-          className={`relative bg-gradient-to-b from-background to-background/50 rounded-lg transition-all duration-300 ${
+          className={`relative bg-gradient-to-b from-background to-background/50 rounded-lg transition-all ${
             isPressed 
-              ? 'translate-y-2 shadow-inner border-2 border-foreground/20' 
+              ? 'translate-y-[3px] shadow-inner border-2 border-foreground/20' 
               : 'shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.15)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.15)] border-2 border-foreground/40 hover:border-foreground'
           }`}
           style={{
-            transform: isPressed ? 'translateY(4px)' : isHovered ? 'translateY(-2px)' : 'translateY(0px)',
-            transition: 'all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)'
+            transform: isPressed 
+              ? 'translateY(3px) scale(0.99)' 
+              : isHovered 
+                ? 'translateY(-2px) scale(1)' 
+                : 'translateY(0) scale(1)',
+            transition: isPressed 
+              ? 'all 0.08s cubic-bezier(0.4, 0.0, 0.2, 1)' 
+              : 'all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1)'
           }}
         >
           {/* Inner highlight for 3D effect */}
@@ -48,26 +55,41 @@ export default function NewsletterCard({ id, title }: NewsletterCardProps) {
             <div className="absolute -inset-0.5 bg-foreground/10 rounded-lg blur-sm opacity-50 animate-pulse pointer-events-none" />
           )}
           
-          {/* Content - Only Title */}
+          {/* Content - Title and Date */}
           <div className="relative p-6 sm:p-8 py-7 sm:py-9">
-            {/* Title */}
-            <h3 
-              id={`newsletter-${id}`} 
-              className="text-lg sm:text-xl font-semibold text-foreground transition-all"
-              style={{
-                transform: isPressed ? 'translateY(2px)' : 'translateY(0)',
-                transition: 'transform 0.2s ease'
-              }}
-            >
-              {title}
-            </h3>
+            {/* Title and Date on same line */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+              <h3 
+                id={`newsletter-${id}`} 
+                className="text-lg sm:text-xl font-semibold text-foreground transition-all flex-1"
+                style={{
+                  transform: isPressed ? 'translateY(1px)' : 'translateY(0)',
+                  transition: 'transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                }}
+              >
+                {title}
+              </h3>
+              
+              {/* Date */}
+              {date && (
+                <span 
+                  className="text-xs sm:text-sm text-secondary/60 font-medium transition-all whitespace-nowrap"
+                  style={{
+                    transform: isPressed ? 'translateY(1px)' : 'translateY(0)',
+                    transition: 'transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                  }}
+                >
+                  {date}
+                </span>
+              )}
+            </div>
             
             {/* Read more indicator */}
             <div 
-              className="flex items-center gap-2 text-sm font-medium text-foreground opacity-70 mt-4 transition-all"
+              className="flex items-center gap-2 text-sm font-medium text-foreground opacity-70 transition-all"
               style={{
-                transform: isPressed ? 'translateX(2px) translateY(2px)' : 'translateX(0) translateY(0)',
-                transition: 'transform 0.2s ease'
+                transform: isPressed ? 'translateX(1px)' : 'translateX(0)',
+                transition: 'transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
               }}
             >
               <span>Read full report</span>

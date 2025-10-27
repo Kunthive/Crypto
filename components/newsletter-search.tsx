@@ -52,7 +52,7 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
           <div className="space-y-6" role="list">
             {filtered.map((n) => (
               <div role="listitem" key={n.id}>
-                <NewsletterCard id={n.id} title={n.title} />
+                <NewsletterCard id={n.id} title={n.title} date={n.date} />
               </div>
             ))}
           </div>

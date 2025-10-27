@@ -46,8 +46,8 @@ export default function Home() {
         </div>
         
         <div className="mt-8">
-          <Link href="/archive">
-            <button className="bg-foreground text-background px-6 sm:px-8 py-3 rounded-lg font-medium hover:opacity-80 transition-all shadow-md hover:shadow-lg text-sm sm:text-base">
+          <Link href="/archive" className="inline-block">
+            <button className="bg-foreground text-background px-6 sm:px-8 py-3 rounded-lg font-medium transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.15)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.15)] active:shadow-inner active:translate-y-[3px] active:scale-[0.99] text-sm sm:text-base">
               Browse All Reports
             </button>
           </Link>
