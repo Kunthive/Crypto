@@ -29,9 +29,9 @@ export default function NewsletterCard({ id, title, date }: NewsletterCardProps)
       >
         {/* Retro 3D raised card effect with mechanical keyboard feel */}
         <div 
-          className={`relative bg-gradient-to-b from-background to-background/50 rounded-lg transition-all ${
+          className={`relative bg-gradient-to-b from-background to-background/50 rounded-lg ${
             isPressed 
-              ? 'translate-y-[3px] shadow-inner border-2 border-foreground/20' 
+              ? 'shadow-inner border-2 border-foreground/20' 
               : 'shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.15)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.15)] border-2 border-foreground/40 hover:border-foreground'
           }`}
           style={{
@@ -40,9 +40,7 @@ export default function NewsletterCard({ id, title, date }: NewsletterCardProps)
               : isHovered 
                 ? 'translateY(-2px) scale(1)' 
                 : 'translateY(0) scale(1)',
-            transition: isPressed 
-              ? 'all 0.08s cubic-bezier(0.4, 0.0, 0.2, 1)' 
-              : 'all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1)'
+            transition: 'all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1)'
           }}
         >
           {/* Inner highlight for 3D effect */}
@@ -61,11 +59,7 @@ export default function NewsletterCard({ id, title, date }: NewsletterCardProps)
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
               <h3 
                 id={`newsletter-${id}`} 
-                className="text-lg sm:text-xl font-semibold text-foreground transition-all flex-1"
-                style={{
-                  transform: isPressed ? 'translateY(1px)' : 'translateY(0)',
-                  transition: 'transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                }}
+                className="text-lg sm:text-xl font-semibold text-foreground flex-1"
               >
                 {title}
               </h3>
@@ -73,11 +67,7 @@ export default function NewsletterCard({ id, title, date }: NewsletterCardProps)
               {/* Date */}
               {date && (
                 <span 
-                  className="text-xs sm:text-sm text-secondary/60 font-medium transition-all whitespace-nowrap"
-                  style={{
-                    transform: isPressed ? 'translateY(1px)' : 'translateY(0)',
-                    transition: 'transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                  }}
+                  className="text-xs sm:text-sm text-secondary/60 font-medium whitespace-nowrap"
                 >
                   {date}
                 </span>
@@ -85,13 +75,7 @@ export default function NewsletterCard({ id, title, date }: NewsletterCardProps)
             </div>
             
             {/* Read more indicator */}
-            <div 
-              className="flex items-center gap-2 text-sm font-medium text-foreground opacity-70 transition-all"
-              style={{
-                transform: isPressed ? 'translateX(1px)' : 'translateX(0)',
-                transition: 'transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-              }}
-            >
+            <div className="flex items-center gap-2 text-sm font-medium text-foreground opacity-70">
               <span>Read full report</span>
               <svg 
                 className="w-4 h-4 inline-block transition-transform duration-200" 
