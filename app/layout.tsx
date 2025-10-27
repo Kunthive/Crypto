@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     keywords: SEO_KEYWORDS,
     canonical: SEO_CONFIG.siteUrl,
   }),
+  metadataBase: new URL(SEO_CONFIG.siteUrl),
   generator: "Next.js",
   applicationName: SEO_CONFIG.siteName,
   referrer: "origin-when-cross-origin",
