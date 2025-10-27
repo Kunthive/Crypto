@@ -63,8 +63,11 @@ export default function Navigation() {
                   className={`relative flex items-center gap-2 px-4 py-2 rounded-lg transition-all tracking-wide group ${
                     isActive(link.href)
                       ? "bg-foreground/10 text-foreground shadow-sm"
-                      : "text-secondary hover:text-foreground hover:bg-foreground/5"
+                      : "text-secondary hover:text-foreground hover:bg-foreground/5 active:translate-y-[2px] active:scale-[0.98]"
                   }`}
+                  style={{
+                    transition: 'all 0.08s cubic-bezier(0.4, 0.0, 0.2, 1)'
+                  }}
                   title={link.description}
                 >
                   <span className="text-sm font-medium">{link.label}</span>
@@ -77,10 +80,14 @@ export default function Navigation() {
 
             {/* Mobile Menu Button - Positioned in header */}
             <button 
-              className="md:hidden w-12 h-12 flex items-center justify-center rounded-lg border-2 border-foreground/30 transition-all bg-gradient-to-b from-background to-background/50 hover:border-foreground/50 active:translate-y-0.5 active:shadow-sm shadow-sm hover:shadow-md"
+              className="md:hidden w-12 h-12 flex items-center justify-center rounded-lg border-2 border-foreground/30 transition-all bg-gradient-to-b from-background to-background/50 hover:border-foreground/50 active:shadow-inner shadow-sm hover:shadow-md"
               onClick={() => setIsOpen(!isOpen)} 
               aria-label="Toggle menu"
               aria-expanded={isOpen}
+              style={{
+                transform: isOpen ? 'translateY(2px) scale(0.98)' : 'translateY(0) scale(1)',
+                transition: 'all 0.08s cubic-bezier(0.4, 0.0, 0.2, 1)'
+              }}
             >
               <svg
                 className="w-7 h-7 stroke-foreground"

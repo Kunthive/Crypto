@@ -218,7 +218,7 @@ export default async function NewsletterPage({ params }: PageProps) {
         <div className="flex gap-4 justify-between">
           {previousNewsletter ? (
             <Link href={`/newsletter/${encodeURIComponent(previousNewsletter.id)}`}>
-              <button className="flex items-center gap-2 px-6 py-3 border border-border rounded-lg hover:bg-muted transition-colors text-foreground font-medium">
+              <button className="flex items-center gap-2 px-6 py-3 border-2 border-border rounded-lg hover:border-foreground hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] active:shadow-inner active:translate-y-[3px] active:scale-[0.99] transition-all text-foreground font-medium">
                 ← Previous Report
               </button>
             </Link>
@@ -228,7 +228,7 @@ export default async function NewsletterPage({ params }: PageProps) {
 
           {nextNewsletter ? (
             <Link href={`/newsletter/${encodeURIComponent(nextNewsletter.id)}`}>
-              <button className="flex items-center gap-2 px-6 py-3 border border-border rounded-lg hover:bg-muted transition-colors text-foreground font-medium">
+              <button className="flex items-center gap-2 px-6 py-3 border-2 border-border rounded-lg hover:border-foreground hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] active:shadow-inner active:translate-y-[3px] active:scale-[0.99] transition-all text-foreground font-medium">
                 Next Report →
               </button>
             </Link>
