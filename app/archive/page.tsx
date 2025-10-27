@@ -48,7 +48,7 @@ export default function ArchivePage() {
             {newsletters.map((n) => (
               // eslint-disable-next-line react/jsx-key
               <div key={n.id} className="p-8 border border-border rounded-lg">
-                <a href={`/newsletter/${n.id}`} className="text-xl font-semibold text-foreground">
+                <a href={`/newsletter/${encodeURIComponent(n.id)}`} className="text-xl font-semibold text-foreground">
                   {n.title}
                 </a>
               </div>
