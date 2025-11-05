@@ -137,48 +137,48 @@ export default async function NewsletterPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
         {/* Article Header */}
         <article aria-labelledby="newsletter-title" itemScope itemType="https://schema.org/Article">
-        <h1 id="newsletter-title" className="text-4xl sm:text-5xl font-bold text-foreground mb-2 text-balance">
+        <h1 id="newsletter-title" className="text-3xl sm:text-5xl font-black text-foreground mb-3 leading-tight">
           {newsletter.title}
         </h1>
-        <div className="h-px bg-border my-8" />
+        <div className="h-1 bg-foreground my-8 rounded-sm" />
 
         {/* Content */}
-        <div className="prose prose-invert max-w-none mb-12 space-y-4">
+        <div className="prose prose-invert max-w-none mb-12">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw, rehypeSanitize]}
             components={{
               h1: ({ className, ...props }) => (
-                <h1 className="text-3xl font-bold text-foreground mt-8 mb-4" {...props} />
+                <h1 className="text-3xl font-black text-foreground mt-10 mb-5" {...props} />
               ),
               h2: ({ className, ...props }) => (
-                <h2 className="text-2xl font-bold text-foreground mt-6 mb-3" {...props} />
+                <h2 className="text-2xl font-black text-foreground mt-8 mb-4" {...props} />
               ),
               h3: ({ className, ...props }) => (
-                <h3 className="text-xl font-semibold text-foreground mt-4 mb-2" {...props} />
+                <h3 className="text-xl font-bold text-foreground mt-6 mb-3" {...props} />
               ),
               h4: ({ className, ...props }) => (
-                <h4 className="text-lg font-semibold text-foreground mt-3 mb-2" {...props} />
+                <h4 className="text-lg font-bold text-foreground mt-5 mb-2" {...props} />
               ),
               p: ({ className, ...props }) => (
-                <p className="text-lg text-foreground leading-relaxed mb-4" {...props} />
+                <p className="text-base sm:text-lg text-foreground leading-relaxed mb-5" {...props} />
               ),
               ul: ({ className, ...props }) => (
-                <ul className="ml-6 list-disc space-y-2 text-foreground mb-4" {...props} />
+                <ul className="ml-6 list-disc space-y-2 text-foreground mb-5 marker:text-foreground" {...props} />
               ),
               ol: ({ className, ...props }) => (
-                <ol className="ml-6 list-decimal space-y-2 text-foreground mb-4" {...props} />
+                <ol className="ml-6 list-decimal space-y-2 text-foreground mb-5 marker:text-foreground marker:font-bold" {...props} />
               ),
               li: ({ className, ...props }) => (
-                <li className="text-lg text-foreground leading-relaxed" {...props} />
+                <li className="text-base sm:text-lg text-foreground leading-relaxed" {...props} />
               ),
               a: ({ className, href, ...props }) => (
                 <a
                   href={href}
-                  className="text-accent hover:underline"
+                  className="text-foreground underline decoration-2 hover:decoration-4 font-medium transition-all"
                   target="_blank"
                   rel="noopener noreferrer"
                   {...props}
@@ -188,24 +188,24 @@ export default async function NewsletterPage({ params }: PageProps) {
                 <img
                   src={src}
                   alt={alt || "Image"}
-                  className="rounded-lg my-4 max-w-full h-auto"
+                  className="rounded-md border-3 border-foreground neo-shadow-sm my-6 max-w-full h-auto"
                   {...props}
                 />
               ),
               blockquote: ({ className, ...props }) => (
-                <blockquote className="border-l-4 border-accent pl-4 italic text-secondary my-4" {...props} />
+                <blockquote className="border-l-4 border-foreground pl-5 py-2 italic text-foreground/90 my-6 font-medium bg-muted" {...props} />
               ),
               code: ({ className, ...props }) => (
-                <code className="bg-muted px-1 py-0.5 rounded text-sm font-mono" {...props} />
+                <code className="bg-muted px-2 py-1 rounded text-sm font-mono border border-foreground/20" {...props} />
               ),
               pre: ({ className, ...props }) => (
-                <pre className="bg-muted p-4 rounded-lg overflow-x-auto my-4" {...props} />
+                <pre className="bg-muted p-5 rounded-md border-2 border-foreground/30 overflow-x-auto my-6" {...props} />
               ),
               strong: ({ className, ...props }) => (
-                <strong className="font-bold" {...props} />
+                <strong className="font-black" {...props} />
               ),
               em: ({ className, ...props }) => (
-                <em className="italic" {...props} />
+                <em className="italic font-medium" {...props} />
               ),
             }}
           >
@@ -214,12 +214,12 @@ export default async function NewsletterPage({ params }: PageProps) {
         </div>
 
         {/* Navigation */}
-        <div className="h-px bg-border my-12" />
-        <div className="flex gap-4 justify-between">
+        <div className="h-1 bg-foreground my-12 rounded-sm" />
+        <div className="flex gap-4 justify-between flex-wrap">
           {previousNewsletter ? (
             <Link href={`/newsletter/${encodeURIComponent(previousNewsletter.id)}`}>
-              <button className="flex items-center gap-2 px-6 py-3 border-2 border-border rounded-lg hover:border-foreground hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] active:shadow-inner active:translate-y-[3px] active:scale-[0.99] transition-all text-foreground font-medium">
-                ← Previous Report
+              <button className="flex items-center gap-2 px-5 py-3 border-3 border-foreground rounded-md neo-shadow-sm hover:neo-shadow hover:-translate-y-1 active:translate-y-1 transition-all text-foreground font-bold bg-background uppercase tracking-wide text-sm">
+                ← Prev
               </button>
             </Link>
           ) : (
@@ -228,8 +228,8 @@ export default async function NewsletterPage({ params }: PageProps) {
 
           {nextNewsletter ? (
             <Link href={`/newsletter/${encodeURIComponent(nextNewsletter.id)}`}>
-              <button className="flex items-center gap-2 px-6 py-3 border-2 border-border rounded-lg hover:border-foreground hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] active:shadow-inner active:translate-y-[3px] active:scale-[0.99] transition-all text-foreground font-medium">
-                Next Report →
+              <button className="flex items-center gap-2 px-5 py-3 border-3 border-foreground rounded-md neo-shadow-sm hover:neo-shadow hover:-translate-y-1 active:translate-y-1 transition-all text-foreground font-bold bg-background uppercase tracking-wide text-sm">
+                Next →
               </button>
             </Link>
           ) : (

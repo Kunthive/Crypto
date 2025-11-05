@@ -4,19 +4,19 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Black and White Color Palette */
+  /* Neo-Brutalism Black and White Color Palette */
   --palette-bg: #FFFFFF;
   --palette-card: #FFFFFF;
   --palette-text: #000000;
-  --palette-text-secondary: rgba(0, 0, 0, 0.6);
+  --palette-text-secondary: rgba(0, 0, 0, 0.7);
   --palette-primary: #000000;
   --palette-primary-hover: #000000;
-  --palette-secondary: #666666;
+  --palette-secondary: #4A4A4A;
   --palette-error: #000000;
   --palette-warning: #000000;
   --palette-success: #000000;
   --palette-highlight: #F5F5F5;
-  --palette-divider: rgba(0, 0, 0, 0.1);
+  --palette-divider: rgba(0, 0, 0, 0.2);
 
   --background: var(--palette-bg);
   --foreground: var(--palette-text);
@@ -37,7 +37,7 @@
   --border: var(--palette-divider);
   --input: rgba(18,18,18,0.04);
   --ring: var(--palette-primary);
-  --radius: 0.625rem;
+  --radius: 0.375rem;
   --sidebar: var(--palette-card);
   --sidebar-foreground: var(--palette-text);
   --sidebar-primary: var(--palette-primary);
@@ -51,22 +51,22 @@
 .dark {
   --background: #000000;
   --foreground: #FFFFFF;
-  --card: #1A1A1A;
+  --card: #0A0A0A;
   --card-foreground: #FFFFFF;
-  --popover: #1A1A1A;
+  --popover: #0A0A0A;
   --popover-foreground: #FFFFFF;
   --primary: #FFFFFF;
   --primary-foreground: #000000;
-  --secondary: #808080;
+  --secondary: #A0A0A0;
   --secondary-foreground: #FFFFFF;
-  --muted: #2A2A2A;
+  --muted: #1A1A1A;
   --muted-foreground: #FFFFFF;
   --accent: #FFFFFF;
   --accent-foreground: #000000;
   --destructive: #FFFFFF;
   --destructive-foreground: #000000;
-  --border: rgba(255,255,255,0.1);
-  --input: rgba(255,255,255,0.05);
+  --border: rgba(255,255,255,0.2);
+  --input: rgba(255,255,255,0.08);
   --ring: #FFFFFF;
   --sidebar: #000000;
   --sidebar-foreground: #FFFFFF;
@@ -133,7 +133,7 @@ a {
 }
 
 button {
-  @apply transition-all duration-200;
+  @apply transition-all duration-150;
 }
 
 code {
@@ -162,14 +162,56 @@ pre code {
   background-color: var(--palette-primary-hover);
 }
 
+/* Neo-Brutalism Utility Classes */
+.neo-shadow {
+  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.neo-shadow-sm {
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.neo-shadow-lg {
+  box-shadow: 12px 12px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.dark .neo-shadow {
+  box-shadow: 8px 8px 0px 0px rgba(255, 255, 255, 1);
+}
+
+.dark .neo-shadow-sm {
+  box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 1);
+}
+
+.dark .neo-shadow-lg {
+  box-shadow: 12px 12px 0px 0px rgba(255, 255, 255, 1);
+}
+
+.neo-border {
+  border: 3px solid currentColor;
+}
+
+.neo-border-thick {
+  border: 5px solid currentColor;
+}
+
 /* Mobile improvements */
 @media (max-width: 768px) {
   html {
     scroll-behavior: smooth;
   }
-  
+
   /* Better mobile navigation */
   nav {
     padding: 0 1rem;
+  }
+
+  /* Smaller neo-shadows on mobile */
+  .neo-shadow {
+    box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+  }
+
+  .dark .neo-shadow {
+    box-shadow: 6px 6px 0px 0px rgba(255, 255, 255, 1);
   }
 }

@@ -17,57 +17,40 @@ export default function Home() {
   const latestNewsletters = getLatestNewsletters(3)
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
       {/* Hero Section */}
-      <section className="mb-12 sm:mb-16 lg:mb-20">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">Milkroad Pro Archive</h1>
-        <p className="text-base sm:text-lg lg:text-xl text-secondary/80 mb-6 max-w-2xl text-pretty">
-          Access all Milkroad Pro reports at your convenience. Browse comprehensive cryptocurrency market analyses and
-          insights previously available only to Pro subscribers.
+      <section className="mb-16 sm:mb-20">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-foreground mb-6 leading-tight">
+          Milkroad Pro Archive
+        </h1>
+        <p className="text-lg sm:text-xl text-secondary max-w-2xl leading-relaxed font-medium">
+          Access all Milkroad Pro reports. Comprehensive cryptocurrency market analyses and insights.
         </p>
       </section>
 
-      {/* Information Section */}
-      <section className="mb-12 sm:mb-16 lg:mb-20">
-        <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-6 sm:mb-8">About This Archive</h2>
-        <div className="space-y-4 text-base sm:text-lg text-secondary/80 max-w-3xl">
-          <p className="text-pretty">
-            This archive contains all historical Milkroad Pro reports, providing you with comprehensive 
-            cryptocurrency market analyses and insights.
-          </p>
-          <p className="text-pretty">
-            Each report includes detailed market analysis, trends, and actionable insights that were 
-            previously available only to Pro subscribers.
-          </p>
-          <p className="text-pretty">
-            Browse the complete collection in the Archive section, where you can search and filter 
-            reports to find the information you need.
-          </p>
+      {/* Stats Section - Minimal & Bold */}
+      <section className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-16">
+        <div className="border-3 border-foreground rounded-md p-6 sm:p-8 neo-shadow-sm hover:neo-shadow hover:-translate-y-1 transition-all bg-background">
+          <div className="text-4xl sm:text-5xl font-black text-foreground mb-2">{latestNewsletters.length > 0 ? '127+' : '0'}</div>
+          <div className="text-sm sm:text-base text-secondary font-bold uppercase tracking-wide">Reports</div>
         </div>
-        
-        <div className="mt-8">
-          <Link href="/archive" className="inline-block">
-            <button className="bg-foreground text-background px-6 sm:px-8 py-3 rounded-lg font-medium transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.15)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.15)] active:shadow-inner active:translate-y-[3px] active:scale-[0.99] text-sm sm:text-base">
-              Browse All Reports
-            </button>
-          </Link>
+        <div className="border-3 border-foreground rounded-md p-6 sm:p-8 neo-shadow-sm hover:neo-shadow hover:-translate-y-1 transition-all bg-background">
+          <div className="text-4xl sm:text-5xl font-black text-foreground mb-2">100%</div>
+          <div className="text-sm sm:text-base text-secondary font-bold uppercase tracking-wide">Complete</div>
+        </div>
+        <div className="border-3 border-foreground rounded-md p-6 sm:p-8 neo-shadow-sm hover:neo-shadow hover:-translate-y-1 transition-all bg-background">
+          <div className="text-4xl sm:text-5xl font-black text-foreground mb-2">Free</div>
+          <div className="text-sm sm:text-base text-secondary font-bold uppercase tracking-wide">Access</div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-        <div className="border border-border rounded-lg p-6 hover:border-foreground transition-colors">
-          <div className="text-3xl font-bold text-foreground mb-2">{latestNewsletters.length > 0 ? '127+' : '0'}</div>
-          <div className="text-secondary">Total Reports</div>
-        </div>
-        <div className="border border-border rounded-lg p-6 hover:border-foreground transition-colors">
-          <div className="text-3xl font-bold text-foreground mb-2">100%</div>
-          <div className="text-secondary">Complete Archive</div>
-        </div>
-        <div className="border border-border rounded-lg p-6 hover:border-foreground transition-colors">
-          <div className="text-3xl font-bold text-foreground mb-2">Free</div>
-          <div className="text-secondary">Public Access</div>
-        </div>
+      {/* CTA Section */}
+      <section className="text-center">
+        <Link href="/archive" className="inline-block">
+          <button className="bg-foreground text-background px-8 sm:px-12 py-4 rounded-md font-black uppercase tracking-wide text-sm sm:text-base neo-shadow hover:neo-shadow-lg hover:-translate-y-1 active:translate-y-1 transition-all border-3 border-foreground">
+            Browse All Reports →
+          </button>
+        </Link>
       </section>
     </div>
   )

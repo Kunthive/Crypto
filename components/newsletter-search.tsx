@@ -28,7 +28,7 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
       <label htmlFor="newsletter-search" className="sr-only">
         Search reports
       </label>
-      <div className="relative max-w-2xl mb-6">
+      <div className="relative max-w-2xl mb-8">
         <input
           id="newsletter-search"
           type="search"
@@ -37,12 +37,12 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           aria-label="Search reports"
-          className="w-full px-4 py-3 sm:py-4 bg-transparent border-2 border-border rounded-lg focus:outline-none focus:border-foreground transition-all text-foreground placeholder:text-secondary/60 text-base"
+          className="w-full px-5 py-4 bg-background border-3 border-foreground rounded-md focus:outline-none focus:ring-4 focus:ring-foreground/20 transition-all text-foreground placeholder:text-secondary font-medium text-base neo-shadow-sm"
         />
       </div>
 
-      <p className="text-sm text-secondary/70 mb-6" aria-live="polite">
-        {filtered.length === initialNewsletters.length 
+      <p className="text-sm text-secondary font-bold mb-8 uppercase tracking-wide" aria-live="polite">
+        {filtered.length === initialNewsletters.length
           ? `Showing all ${initialNewsletters.length} reports`
           : `Found ${filtered.length} of ${initialNewsletters.length} reports`}
       </p>
@@ -57,9 +57,9 @@ export default function NewsletterSearch({ initialNewsletters }: Props) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 px-4 border-2 border-dashed border-border rounded-lg">
-            <p className="text-lg font-medium text-secondary mb-2">No results found</p>
-            <p className="text-sm text-secondary/70">Try searching with different keywords</p>
+          <div className="text-center py-16 px-4 border-3 border-foreground border-dashed rounded-md neo-shadow-sm">
+            <p className="text-xl font-black text-foreground mb-2">No results found</p>
+            <p className="text-sm text-secondary font-bold">Try searching with different keywords</p>
           </div>
         )}
       </section>
