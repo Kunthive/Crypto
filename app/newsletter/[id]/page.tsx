@@ -137,43 +137,48 @@ export default async function NewsletterPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbStructuredData) }}
       />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
         {/* Article Header */}
         <article aria-labelledby="newsletter-title" itemScope itemType="https://schema.org/Article">
-        <h1 id="newsletter-title" className="text-3xl sm:text-5xl font-black text-foreground mb-3 leading-tight">
-          {newsletter.title}
-        </h1>
-        <div className="h-1 bg-foreground my-8 rounded-sm" />
+        <div className="mb-8">
+          <h1 id="newsletter-title" className="text-4xl sm:text-6xl font-black text-foreground mb-6 leading-[1.1] tracking-tight">
+            {newsletter.title}
+          </h1>
+          {newsletter.date && (
+            <p className="text-lg text-secondary font-bold uppercase tracking-wide">{newsletter.date}</p>
+          )}
+        </div>
+        <div className="h-1.5 bg-foreground my-10 rounded-sm" />
 
         {/* Content */}
-        <div className="prose prose-invert max-w-none mb-12">
+        <div className="prose prose-invert max-w-none mb-16">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             rehypePlugins={[rehypeRaw, rehypeSanitize]}
             components={{
               h1: ({ className, ...props }) => (
-                <h1 className="text-3xl font-black text-foreground mt-10 mb-5" {...props} />
+                <h1 className="text-3xl sm:text-4xl font-black text-foreground mt-12 mb-6 leading-tight" {...props} />
               ),
               h2: ({ className, ...props }) => (
-                <h2 className="text-2xl font-black text-foreground mt-8 mb-4" {...props} />
+                <h2 className="text-2xl sm:text-3xl font-black text-foreground mt-10 mb-5 leading-tight" {...props} />
               ),
               h3: ({ className, ...props }) => (
-                <h3 className="text-xl font-bold text-foreground mt-6 mb-3" {...props} />
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground mt-8 mb-4" {...props} />
               ),
               h4: ({ className, ...props }) => (
-                <h4 className="text-lg font-bold text-foreground mt-5 mb-2" {...props} />
+                <h4 className="text-lg sm:text-xl font-bold text-foreground mt-6 mb-3" {...props} />
               ),
               p: ({ className, ...props }) => (
-                <p className="text-base sm:text-lg text-foreground leading-relaxed mb-5" {...props} />
+                <p className="text-base sm:text-lg text-foreground leading-[1.8] mb-6" {...props} />
               ),
               ul: ({ className, ...props }) => (
-                <ul className="ml-6 list-disc space-y-2 text-foreground mb-5 marker:text-foreground" {...props} />
+                <ul className="ml-6 list-disc space-y-3 text-foreground mb-6 marker:text-foreground" {...props} />
               ),
               ol: ({ className, ...props }) => (
-                <ol className="ml-6 list-decimal space-y-2 text-foreground mb-5 marker:text-foreground marker:font-bold" {...props} />
+                <ol className="ml-6 list-decimal space-y-3 text-foreground mb-6 marker:text-foreground marker:font-bold" {...props} />
               ),
               li: ({ className, ...props }) => (
-                <li className="text-base sm:text-lg text-foreground leading-relaxed" {...props} />
+                <li className="text-base sm:text-lg text-foreground leading-[1.8] pl-2" {...props} />
               ),
               a: ({ className, href, ...props }) => (
                 <a
@@ -188,24 +193,24 @@ export default async function NewsletterPage({ params }: PageProps) {
                 <img
                   src={src}
                   alt={alt || "Image"}
-                  className="rounded-md border-3 border-foreground neo-shadow-sm my-6 max-w-full h-auto"
+                  className="rounded-md border-3 border-foreground shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] my-8 max-w-full h-auto"
                   {...props}
                 />
               ),
               blockquote: ({ className, ...props }) => (
-                <blockquote className="border-l-4 border-foreground pl-5 py-2 italic text-foreground/90 my-6 font-medium bg-muted" {...props} />
+                <blockquote className="border-l-[6px] border-foreground pl-6 py-4 italic text-foreground/90 my-8 font-medium bg-muted rounded-r-md" {...props} />
               ),
               code: ({ className, ...props }) => (
-                <code className="bg-muted px-2 py-1 rounded text-sm font-mono border border-foreground/20" {...props} />
+                <code className="bg-foreground text-background px-2 py-1 rounded-sm text-sm font-mono font-bold" {...props} />
               ),
               pre: ({ className, ...props }) => (
-                <pre className="bg-muted p-5 rounded-md border-2 border-foreground/30 overflow-x-auto my-6" {...props} />
+                <pre className="bg-muted p-6 rounded-md border-3 border-foreground overflow-x-auto my-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]" {...props} />
               ),
               strong: ({ className, ...props }) => (
-                <strong className="font-black" {...props} />
+                <strong className="font-black text-foreground" {...props} />
               ),
               em: ({ className, ...props }) => (
-                <em className="italic font-medium" {...props} />
+                <em className="italic font-semibold" {...props} />
               ),
             }}
           >
@@ -214,28 +219,45 @@ export default async function NewsletterPage({ params }: PageProps) {
         </div>
 
         {/* Navigation */}
-        <div className="h-1 bg-foreground my-12 rounded-sm" />
-        <div className="flex gap-4 justify-between flex-wrap">
+        <div className="h-1.5 bg-foreground my-16 rounded-sm" />
+        <nav className="flex gap-4 justify-between flex-wrap items-center" aria-label="Newsletter navigation">
           {previousNewsletter ? (
-            <Link href={`/newsletter/${encodeURIComponent(previousNewsletter.id)}`}>
-              <button className="flex items-center gap-2 px-5 py-3 border-3 border-foreground rounded-md neo-shadow-sm hover:neo-shadow hover:-translate-y-1 active:translate-y-1 transition-all text-foreground font-bold bg-background uppercase tracking-wide text-sm">
-                ← Prev
+            <Link
+              href={`/newsletter/${encodeURIComponent(previousNewsletter.id)}`}
+              className="group"
+            >
+              <button className="flex items-center gap-3 px-6 py-4 border-3 border-foreground rounded-md bg-background text-foreground font-bold uppercase tracking-wide text-sm transition-all duration-300 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0 active:translate-x-0">
+                <span className="transition-transform duration-300 group-hover:-translate-x-1">←</span>
+                <span>Previous</span>
               </button>
             </Link>
           ) : (
             <div />
           )}
 
+          <Link
+            href="/archive"
+            className="group text-center"
+          >
+            <button className="px-6 py-4 border-3 border-foreground rounded-md bg-foreground text-background font-bold uppercase tracking-wide text-sm transition-all duration-300 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0 active:translate-x-0">
+              All Reports
+            </button>
+          </Link>
+
           {nextNewsletter ? (
-            <Link href={`/newsletter/${encodeURIComponent(nextNewsletter.id)}`}>
-              <button className="flex items-center gap-2 px-5 py-3 border-3 border-foreground rounded-md neo-shadow-sm hover:neo-shadow hover:-translate-y-1 active:translate-y-1 transition-all text-foreground font-bold bg-background uppercase tracking-wide text-sm">
-                Next →
+            <Link
+              href={`/newsletter/${encodeURIComponent(nextNewsletter.id)}`}
+              className="group"
+            >
+              <button className="flex items-center gap-3 px-6 py-4 border-3 border-foreground rounded-md bg-background text-foreground font-bold uppercase tracking-wide text-sm transition-all duration-300 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0 active:translate-x-0">
+                <span>Next</span>
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </button>
             </Link>
           ) : (
             <div />
           )}
-        </div>
+        </nav>
       </article>
     </div>
     </>

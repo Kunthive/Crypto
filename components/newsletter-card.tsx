@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
 
 interface NewsletterCardProps {
   id: string
@@ -10,62 +9,47 @@ interface NewsletterCardProps {
 }
 
 export default function NewsletterCard({ id, title, date }: NewsletterCardProps) {
-  const [isPressed, setIsPressed] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
-
   return (
     <article aria-labelledby={`newsletter-${id}`}>
       <Link
         href={`/newsletter/${encodeURIComponent(id)}`}
-        className="block focus:outline-none focus:ring-4 focus:ring-foreground rounded-md"
-        aria-label={`Open report ${title}`}
-        onMouseDown={() => setIsPressed(true)}
-        onMouseUp={() => setIsPressed(false)}
-        onMouseLeave={() => {
-          setIsPressed(false)
-          setIsHovered(false)
-        }}
-        onMouseEnter={() => setIsHovered(true)}
+        className="group block focus:outline-none focus:ring-4 focus:ring-foreground/50 rounded-md transition-all duration-200"
+        aria-label={`Read: ${title}`}
       >
-        {/* Neo-Brutalism Card */}
-        <div
-          className={`relative bg-background rounded-md ${
-            isPressed
-              ? 'border-4 border-foreground translate-y-2'
-              : isHovered
-                ? 'border-4 border-foreground -translate-y-1 neo-shadow'
-                : 'border-3 border-foreground/60 neo-shadow-sm'
-          }`}
-          style={{
-            transition: 'all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1)'
-          }}
-        >
-          {/* Content - Minimal & Bold */}
-          <div className="relative p-5 sm:p-7">
+        {/* Improved Neo-Brutalism Card */}
+        <div className="relative bg-background rounded-md border-3 border-foreground overflow-hidden transition-all duration-300 ease-out hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-y-0 active:translate-x-0">
+          {/* Content */}
+          <div className="relative p-6 sm:p-8">
             {/* Title and Date */}
-            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
-              <h3
-                id={`newsletter-${id}`}
-                className="text-lg sm:text-xl font-bold text-foreground flex-1 leading-tight"
-              >
-                {title}
-              </h3>
-
-              {/* Date */}
-              {date && (
-                <span
-                  className="text-xs sm:text-sm text-secondary font-bold whitespace-nowrap uppercase tracking-wide"
+            <div className="flex flex-col gap-3 mb-4">
+              <div className="flex items-start justify-between gap-4">
+                <h3
+                  id={`newsletter-${id}`}
+                  className="text-xl sm:text-2xl font-black text-foreground leading-tight group-hover:underline decoration-3 underline-offset-4 transition-all"
                 >
-                  {date}
-                </span>
+                  {title}
+                </h3>
+              </div>
+
+              {/* Date badge */}
+              {date && (
+                <div className="inline-flex">
+                  <span className="px-3 py-1 bg-foreground text-background text-xs font-bold uppercase tracking-wider rounded-sm">
+                    {date}
+                  </span>
+                </div>
               )}
             </div>
 
-            {/* Read more indicator */}
-            <div className="flex items-center gap-2 text-sm font-bold text-foreground/70 uppercase tracking-wide">
-              <span>Read →</span>
+            {/* Read more indicator with arrow animation */}
+            <div className="flex items-center gap-2 text-sm font-bold text-foreground uppercase tracking-wide">
+              <span>Read Report</span>
+              <span className="transition-transform duration-300 ease-out group-hover:translate-x-2">→</span>
             </div>
           </div>
+
+          {/* Accent line at bottom */}
+          <div className="h-1 bg-foreground transform origin-left scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100"></div>
         </div>
       </Link>
     </article>
