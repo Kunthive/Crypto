@@ -7,7 +7,9 @@ const nextConfig = {
   
   // Ensure public folder is included in build
   outputFileTracingIncludes: {
-    '/newsletter/*': ['./public/newsletters/**/*'],
+    '/': ['./public/newsletters/**/*.md'],
+    '/newsletter/[id]': ['./public/newsletters/**/*.md'],
+    '/archive': ['./public/newsletters/**/*.md'],
   },
   
   // Security headers for SEO trust signals

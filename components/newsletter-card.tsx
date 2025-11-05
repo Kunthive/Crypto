@@ -14,10 +14,10 @@ export default function NewsletterCard({ id, title, date }: NewsletterCardProps)
   const [isHovered, setIsHovered] = useState(false)
 
   return (
-    <article aria-labelledby={`newsletter-${id}`} className="rounded-lg">
-      <Link 
-        href={`/newsletter/${encodeURIComponent(id)}`} 
-        className="block focus:outline-none focus:ring-2 focus:ring-foreground rounded-lg" 
+    <article aria-labelledby={`newsletter-${id}`}>
+      <Link
+        href={`/newsletter/${encodeURIComponent(id)}`}
+        className="block focus:outline-none focus:ring-4 focus:ring-foreground rounded-md"
         aria-label={`Open report ${title}`}
         onMouseDown={() => setIsPressed(true)}
         onMouseUp={() => setIsPressed(false)}
@@ -27,67 +27,43 @@ export default function NewsletterCard({ id, title, date }: NewsletterCardProps)
         }}
         onMouseEnter={() => setIsHovered(true)}
       >
-        {/* Retro 3D raised card effect with mechanical keyboard feel */}
-        <div 
-          className={`relative bg-gradient-to-b from-background to-background/50 rounded-lg ${
-            isPressed 
-              ? 'shadow-inner border-2 border-foreground/20' 
-              : 'shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,0.15)] dark:hover:shadow-[6px_6px_0px_0px_rgba(255,255,255,0.15)] border-2 border-foreground/40 hover:border-foreground'
+        {/* Neo-Brutalism Card */}
+        <div
+          className={`relative bg-background rounded-md ${
+            isPressed
+              ? 'border-4 border-foreground translate-y-2'
+              : isHovered
+                ? 'border-4 border-foreground -translate-y-1 neo-shadow'
+                : 'border-3 border-foreground/60 neo-shadow-sm'
           }`}
           style={{
-            transform: isPressed 
-              ? 'translateY(3px) scale(0.99)' 
-              : isHovered 
-                ? 'translateY(-2px) scale(1)' 
-                : 'translateY(0) scale(1)',
             transition: 'all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1)'
           }}
         >
-          {/* Inner highlight for 3D effect */}
-          {!isPressed && (
-            <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-foreground/5 to-transparent rounded-t-lg pointer-events-none opacity-50" />
-          )}
-          
-          {/* Subtle glow on hover */}
-          {isHovered && !isPressed && (
-            <div className="absolute -inset-0.5 bg-foreground/10 rounded-lg blur-sm opacity-50 animate-pulse pointer-events-none" />
-          )}
-          
-          {/* Content - Title and Date */}
-          <div className="relative p-6 sm:p-8 py-7 sm:py-9">
-            {/* Title and Date on same line */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-              <h3 
-                id={`newsletter-${id}`} 
-                className="text-lg sm:text-xl font-semibold text-foreground flex-1"
+          {/* Content - Minimal & Bold */}
+          <div className="relative p-5 sm:p-7">
+            {/* Title and Date */}
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+              <h3
+                id={`newsletter-${id}`}
+                className="text-lg sm:text-xl font-bold text-foreground flex-1 leading-tight"
               >
                 {title}
               </h3>
-              
+
               {/* Date */}
               {date && (
-                <span 
-                  className="text-xs sm:text-sm text-secondary/60 font-medium whitespace-nowrap"
+                <span
+                  className="text-xs sm:text-sm text-secondary font-bold whitespace-nowrap uppercase tracking-wide"
                 >
                   {date}
                 </span>
               )}
             </div>
-            
+
             {/* Read more indicator */}
-            <div className="flex items-center gap-2 text-sm font-medium text-foreground opacity-70">
-              <span>Read full report</span>
-              <svg 
-                className="w-4 h-4 inline-block transition-transform duration-200" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-                style={{
-                  transform: isHovered ? 'translateX(2px)' : 'translateX(0)'
-                }}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+            <div className="flex items-center gap-2 text-sm font-bold text-foreground/70 uppercase tracking-wide">
+              <span>Read →</span>
             </div>
           </div>
         </div>
