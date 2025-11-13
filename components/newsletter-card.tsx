@@ -17,7 +17,7 @@ export default function NewsletterCard({ id, title, date }: NewsletterCardProps)
       >
         {/* Neo-Brutalism Card */}
         <div
-          className="relative bg-background rounded-md border-3 border-foreground/60 neo-shadow-sm transition-all duration-150 ease-out group-hover:-translate-y-1 group-hover:border-foreground group-hover:neo-shadow group-active:translate-y-1 group-active:border-foreground"
+          className="relative bg-background rounded-md border-3 border-foreground/60 neo-shadow-sm transition-all duration-150 ease-out group-hover:-translate-y-1 group-focus-visible:-translate-y-1 group-hover:border-foreground group-focus-visible:border-foreground group-active:translate-y-1 group-active:border-foreground"
         >
           {/* Content - Minimal & Bold */}
           <div className="relative p-5 sm:p-7">
