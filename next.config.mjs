@@ -5,12 +5,15 @@ const nextConfig = {
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   
-  // Ensure public folder is included in build
+  // Ensure public folder is included in build - critical for Vercel deployment
   outputFileTracingIncludes: {
-    '/': ['./public/newsletters/**/*.md'],
-    '/newsletter/[id]': ['./public/newsletters/**/*.md'],
-    '/archive': ['./public/newsletters/**/*.md'],
+    '/': ['./public/newsletters/**/*'],
+    '/newsletter/[id]': ['./public/newsletters/**/*'],
+    '/archive': ['./public/newsletters/**/*'],
   },
+  
+  // Explicitly include public directory in output
+  outputFileTracing: true,
   
   // Security headers for SEO trust signals
   async headers() {

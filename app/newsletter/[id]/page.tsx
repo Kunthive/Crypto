@@ -9,21 +9,28 @@ import { generateSEOMetadata, generateArticleStructuredData, SEO_CONFIG, SEO_KEY
 import type { Metadata } from "next"
 
 interface PageProps {
-  params: Promise<{ id: string }>
+  params: { id: string }
 }
 
-export const dynamic = 'force-static'
+export const dynamic = "force-static"
+
+function decodeSegment(value: string) {
+  try {
+    return decodeURIComponent(value)
+  } catch {
+    return value
+  }
+}
 
 export async function generateStaticParams() {
   const newsletters = getAllNewsletters()
   return newsletters.map((newsletter) => ({
-    id: encodeURIComponent(newsletter.id),
+    id: newsletter.id,
   }))
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { id } = await params
-  const decodedId = decodeURIComponent(id)
+  const decodedId = decodeSegment(params.id)
   const newsletter = getNewsletterById(decodedId)
 
   if (!newsletter) {
@@ -32,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
   }
 
-  const url = `${SEO_CONFIG.siteUrl}/newsletter/${encodeURIComponent(id)}`
+  const url = `${SEO_CONFIG.siteUrl}/newsletter/${encodeURIComponent(newsletter.id)}`
   const description = newsletter.content.substring(0, 155) + "..."
   
   return generateSEOMetadata({
@@ -51,8 +58,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function NewsletterPage({ params }: PageProps) {
-  const { id } = await params
-  const decodedId = decodeURIComponent(id)
+  const decodedId = decodeSegment(params.id)
   const newsletter = getNewsletterById(decodedId)
 
   if (!newsletter) {
@@ -83,7 +89,7 @@ export default async function NewsletterPage({ params }: PageProps) {
     })
     .join('\n')
 
-  const url = `${SEO_CONFIG.siteUrl}/newsletter/${encodeURIComponent(id)}`
+  const url = `${SEO_CONFIG.siteUrl}/newsletter/${encodeURIComponent(newsletter.id)}`
   const description = newsletter.content.substring(0, 155)
   
   const articleStructuredData = generateArticleStructuredData({

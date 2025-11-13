@@ -42,9 +42,17 @@ export function loadNewsletters(): Newsletter[] {
 
   let files: string[] = []
   try {
+    // Check if directory exists
+    if (!fs.existsSync(NEWSLETTERS_DIR)) {
+      console.error(`Newsletters directory not found at: ${NEWSLETTERS_DIR}`)
+      cached = []
+      return cached
+    }
     files = fs.readdirSync(NEWSLETTERS_DIR)
+    console.log(`Found ${files.length} files in newsletters directory`)
   } catch (e) {
     // If directory doesn't exist, return empty
+    console.error('Error reading newsletters directory:', e)
     cached = []
     return cached
   }

@@ -1,8 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import { useState } from "react"
-
 interface NewsletterCardProps {
   id: string
   title: string
@@ -10,35 +8,16 @@ interface NewsletterCardProps {
 }
 
 export default function NewsletterCard({ id, title, date }: NewsletterCardProps) {
-  const [isPressed, setIsPressed] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
-
   return (
     <article aria-labelledby={`newsletter-${id}`}>
       <Link
         href={`/newsletter/${encodeURIComponent(id)}`}
-        className="block focus:outline-none focus:ring-4 focus:ring-foreground rounded-md"
+        className="group block focus:outline-none focus-visible:ring-4 focus-visible:ring-foreground/40 rounded-md"
         aria-label={`Open report ${title}`}
-        onMouseDown={() => setIsPressed(true)}
-        onMouseUp={() => setIsPressed(false)}
-        onMouseLeave={() => {
-          setIsPressed(false)
-          setIsHovered(false)
-        }}
-        onMouseEnter={() => setIsHovered(true)}
       >
         {/* Neo-Brutalism Card */}
         <div
-          className={`relative bg-background rounded-md ${
-            isPressed
-              ? 'border-4 border-foreground translate-y-2'
-              : isHovered
-                ? 'border-4 border-foreground -translate-y-1 neo-shadow'
-                : 'border-3 border-foreground/60 neo-shadow-sm'
-          }`}
-          style={{
-            transition: 'all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1)'
-          }}
+          className="relative bg-background rounded-md border-3 border-foreground/60 neo-shadow-sm transition-all duration-150 ease-out group-hover:-translate-y-1 group-focus-visible:-translate-y-1 group-hover:border-foreground group-focus-visible:border-foreground group-active:translate-y-1 group-active:border-foreground"
         >
           {/* Content - Minimal & Bold */}
           <div className="relative p-5 sm:p-7">
