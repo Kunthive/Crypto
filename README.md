@@ -1,94 +1,115 @@
 # Milkroad Pro Archive
 
-A professional, minimalist archive for Milkroad Pro cryptocurrency newsletters. Built with Next.js, featuring search functionality, responsive design, and a contact form.
+> A clean, minimalist web archive for Milkroad Pro cryptocurrency newsletters.
 
-## Features
+A Next.js application that turns a folder of Markdown files into a searchable, browsable newsletter
+archive. It pairs a monochromatic black/white/grey aesthetic with full-text search, individual
+newsletter pages rendered from Markdown, and a contact form. New issues are added simply by dropping
+a `.md` file into the newsletters directory.
 
-- **Clean Design** - Monochromatic black/white/grey aesthetic  
-- **Full-Text Search** - Search newsletters by title and content  
-- **Responsive** - Works perfectly on desktop, tablet, and mobile  
-- **Contact Form** - EmailJS integration for inquiries  
-- **Fast** - Static site generation for optimal performance  
-- **SEO Optimized** - Sitemap, meta tags, and semantic HTML  
-- **Easy Content Management** - Just add Markdown files  
+## ✨ Features
 
-## Quick Start
+- **Markdown-driven content** — add a `.md` file and it appears in the archive automatically.
+- **Full-text search** — filter newsletters by title and content.
+- **Individual newsletter pages** — Markdown rendered with GitHub-flavored Markdown, raw HTML support, and sanitization.
+- **Contact form** — powered by EmailJS.
+- **SEO** — sitemap (`app/sitemap.ts`), SEO helpers (`lib/seo.ts`), meta tags, and semantic HTML.
+- **Responsive** — works across desktop, tablet, and mobile.
+- **Minimalist design** — monochromatic theme with theming support via `next-themes`.
 
-\`\`\`bash
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 16 (App Router) with React 19
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4
+- **UI components:** Radix UI / shadcn/ui, Lucide icons
+- **Markdown:** `react-markdown` with `remark-gfm`, `rehype-raw`, `rehype-sanitize`
+- **Forms:** React Hook Form + Zod
+- **Email:** EmailJS
+- **Analytics:** Vercel Analytics
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ and npm
+
+### Installation
+
+```bash
 # Install dependencies
 npm install
 
 # Set up environment variables
 cp .env.example .env.local
 # Edit .env.local with your EmailJS credentials
+```
 
-# Run development server
+### Running locally
+
+```bash
 npm run dev
-\`\`\`
+```
 
-Visit [http://localhost:3000](http://localhost:3000)
+Visit [http://localhost:3000](http://localhost:3000).
 
-## Adding Newsletters
+### Available scripts
 
-1. Create a `.md` file in `public/newsletters/`
-2. Example: `bitcoin-analysis.md`
-3. The file will automatically appear in the archive
+```bash
+npm run dev     # Start the development server
+npm run build   # Create a production build
+npm run start   # Start the production server
+npm run lint    # Run ESLint
+```
 
-\`\`\`markdown
+See [SETUP.md](./SETUP.md) for detailed setup and deployment instructions, and
+[SEO_OPTIMIZATIONS.md](./SEO_OPTIMIZATIONS.md) for SEO notes.
+
+## ✍️ Adding Newsletters
+
+1. Create a Markdown file in `public/newsletters/` (e.g. `bitcoin-analysis.md`).
+2. The file is picked up automatically and appears in the archive.
+
+```markdown
 # Newsletter Title
 
 Your content here...
-\`\`\`
+```
 
-## Deployment
+## ⚙️ Configuration
 
-Deploy to Vercel with one click:
+### EmailJS
 
-\`\`\`bash
-npm run build
-npm start
-\`\`\`
-
-See [SETUP.md](./SETUP.md) for detailed deployment instructions.
-
-## Configuration
-
-### EmailJS Setup
-
-1. Sign up at [emailjs.com](https://www.emailjs.com)
-2. Create an email service
-3. Create a template with variables: `{{from_name}}`, `{{user_email}}`, `{{message}}`
-4. Add credentials to `.env.local`
+1. Sign up at [emailjs.com](https://www.emailjs.com).
+2. Create an email service and a template with the variables `{{from_name}}`, `{{user_email}}`, `{{message}}`.
+3. Add your credentials to `.env.local`.
 
 ### Customization
 
-Edit `app/globals.css` to change colors, fonts, and spacing.
+Edit `app/globals.css` to adjust colors, fonts, and spacing.
 
-## Project Structure
+## 📁 Project Structure
 
-\`\`\`
-app/              # Next.js app directory
-├── page.tsx      # Homepage
-├── archive/      # Archive page
-├── newsletter/   # Individual newsletter pages
-├── intent/       # About page
-├── contact/      # Contact form
-└── layout.tsx    # Root layout
+```
+.
+├── app/                 # Next.js App Router
+│   ├── page.tsx         # Homepage
+│   ├── archive/         # Archive listing
+│   ├── newsletter/      # Individual newsletter pages
+│   ├── intent/          # About page
+│   ├── contact/         # Contact form
+│   ├── sitemap.ts       # Dynamic sitemap
+│   └── layout.tsx       # Root layout
+├── components/          # Reusable components (navigation, footer, search, cards, ui/)
+├── lib/                 # Utilities (newsletters.ts, seo.ts, utils.ts)
+└── public/
+    └── newsletters/     # Markdown source files
+```
 
-components/       # Reusable components
-lib/              # Utilities
-public/
-└── newsletters/  # Markdown files
-\`\`\`
+## 📄 License
 
-## Technologies
+Proprietary — Kunthive.
 
-- **Next.js 16** - React framework
-- **Tailwind CSS** - Styling
-- **React Markdown** - Markdown rendering
-- **EmailJS** - Contact form
-- **Lucide Icons** - Icons
+---
 
-## License
-
-Open source - feel free to use and modify.
+Built by [Kunthive](https://kunthive.in)
